@@ -31,7 +31,7 @@ var polygon = L.polygon([
 ]).addTo(mymap);
 
 
-$.getJSON( "/static/PRY_adm1.json", function( data ) {
+$.getJSON( "/static/js/luque.json", function( data ) {
   console.log(data);
 
   L.geoJson(data).addTo(mymap);

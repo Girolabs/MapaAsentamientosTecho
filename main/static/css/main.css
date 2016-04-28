@@ -1,6 +1,105 @@
-.navbar, .navbar.navbar-default {
-	background: #0092dd;
+@font-face {
+    font-family: Novecento;
+    src: url(../fonts/Novecentowide-Normal.otf);
+    font-weight: normal;
 }
+@font-face {
+    font-family: Novecento;
+    src: url(../fonts/Novecentowide-Bold.otf);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: Novecento;
+    src: url(../fonts/Novecentowide-DemiBold.otf);
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: Novecento;
+    src: url(../fonts/Novecentowide-Light.otf);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Novecento;
+    src: url(../fonts/Novecentowide-Medium.otf);
+    font-weight: 600;
+}
+
+
+@font-face {
+    font-family: Vista;
+    src: url(../fonts/VistaSanReg.ttf);
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Vista;
+    src: url(../fonts/VistaSanRegIta.ttf);
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Vista;
+    src: url(../fonts/VistaSanRegIta.ttf);
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Vista;
+    src: url(../fonts/VistaSanLig.ttf);
+    font-weight: 300;
+    
+}
+
+@font-face {
+    font-family: Vista;
+    src: url(../fonts/VistaSanLigIta.ttf);
+    font-weight: 300;
+    font-style: italic;
+    
+}
+@font-face {
+    font-family: Vista;
+    src: url(../fonts/VistaSanBol.ttf);
+    font-weight: bold;
+    
+    
+}
+
+@font-face {
+    font-family: Vista;
+    src: url(../fonts/VistaSanBolIta.ttf);
+    font-weight: bold;
+    font-style: italic;
+    
+}
+
+.h1, .h2, .h3, .h4, body, h1, h2, h3, h4, h5, h6 {
+    font-family: Novecento,Helvetica,Arial,sans-serif;
+    font-weight: bold;
+}
+
+
+
+
+div.container {
+    font-family: Novecento;
+}
+
+
+.navbar, .navbar.navbar-default {
+	background: white;
+}
+
+.navbar .btn {
+    margin: 0px;
+}
+
+
 
 #mapcanvas {
 	 margin-top: 80px !important;
@@ -19,3 +118,65 @@
 .navbar-brand img {
     max-width: 124px;
 }
+
+.bienvenida {
+     text-align: center; 
+}
+.bienvenida .logo {
+    width: 300px;
+    filter: grayscale(1);
+    -webkit-filter: grayscale(1);
+}
+
+
+.btn:not(.btn-raised), .btn:not(.btn-raised).btn-default, .input-group-btn .btn:not(.btn-raised), .input-group-btn .btn:not(.btn-raised).btn-default
+{
+        background: #0092DD;
+    color: white ;
+}
+
+.btn:not(.btn-raised):not(.btn-link):focus, .btn:not(.btn-raised):not(.btn-link):hover, .input-group-btn .btn:not(.btn-raised):not(.btn-link):focus, .input-group-btn .btn:not(.btn-raised):not(.btn-link):hover
+{
+        background: #58585A;
+}
+
+a.btn.btn-white {
+    background: white;
+    color: #797979;
+}
+
+a.btn.btn-white:hover {
+    color: white;
+}
+
+
+.cta-principal h3 {
+    text-align: center;
+}
+
+#mapcanvas2 {
+    height: 500px;
+}
+
+#mapcanvas2.leaflet-container {
+    background: transparent;
+    
+}
+
+#mapcanvas2 .leaflet-control-attribution.leaflet-control {
+    display: none;
+}
+
+#mapcanvas2 .leaflet-popup-content {
+    color: #0092DD;
+}
+
+#mapcanvas2 .leaflet-popup-content-wrapper {
+    border-radius: 0px;
+    padding: 20px;
+}
+
+
+
+
+

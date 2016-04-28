@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+  {% block contenido%}
+
+
+<style type="text/css">
+body {
+    background: #0092DD;
+    color: white;
+}
+
+</style>
+  <div class="container" style="margin-top:80px;">
+
+
+<div class="row">
+
+	<div class="col-md-5">
+		<div id="mapcanvas2"></div>
+	</div>
+	<div class="col-md-7 bienvenida">  
+		<img src="{% static 'img/logo-techo-negativo.png' %}" class="logo">
+		<h1>Relevamiento de Asentamientos Infomales</h1>
+		<h2>Departamento Central</h2>
+		<a class="btn btn-white"> Datos </a>
+		<a class="btn btn-white"> Graficos</a>
+		<a class="btn btn-white"> Mapa</a>
+		<a class="btn btn-white"> Metodología</a>
+
+	</div>
+
+</div>
+
+
+  <div class="row">
+
+  	 <div class="col-md-4 cta-princpal"><h3>Que es Techo</h3>
+
+  </div>
+  <div class="col-md-4 cta-principal"><h3>¿Que es el Relevamiento?</h3> </div>
+  <div class="col-md-4 cta-principal"><h3>Reporte</h3></div>
+
+
+  </div>
+
+ 
+  
+
+
+  </div>
+  {% endblock %}
+
