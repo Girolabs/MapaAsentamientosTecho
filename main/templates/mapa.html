@@ -1,6 +1,14 @@
+ {% extends "base.html" %}
  {% load staticfiles %}
   {% block contenido%}
+
+
    <div id="mapcanvas"></div>
   {% endblock %}
 
 
+
+
+     {% block footer%}
+        <script src="{% static 'js/main.js' %}"></script>
+      {% endblock %}

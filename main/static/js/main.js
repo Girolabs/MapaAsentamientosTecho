@@ -8,31 +8,102 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 }).addTo(mymap);
 
 
-L.marker([-25.295936, -57.609821]).addTo(mymap)
-    .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-    .openPopup();
+
+/* CUADRO DE INFORMACION PERSONALIZADO */
+/* source:http://leafletjs.com/examples/choropleth.html*/
+
+var info = L.control();
+
+info.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+    this.update();
+    return this._div;
+};
+
+// method that we will use to update the control based on feature properties passed
+info.update = function (props) {
+    console.log("estoy en update")
+    console.log(props);
+    this._div.innerHTML =   (props ?
+        '<h4>'+ props.name+'</h4>' +    '<b>Cantidad de Asentamiento</b><br />' + props.name + ' personas'
+        : '<h4>'+ "Mapa"+'</h4>' + 'Posisionate sobre un departamento');
+};
 
 
-var marker = L.marker([-25.298526, -57.602194]).addTo(mymap);
+
+// FUNCION PARA ACCION EN ON HOVER
+
+
+function highlightFeature(e) {
+
+
+    var layer = e.target;
+
+    layer.setStyle({
+        weight: 2,
+        color: '#666',
+        dashArray: '',
+        fillOpacity: 0.7
+    });
+
+    if (!L.Browser.ie && !L.Browser.opera) {
+        layer.bringToFront();
+    }
+ //   console.log(layer.feature.properties);
+   info.update(layer.feature.properties);  //controla la info de la caja
+
+}
+// FUNCION PARA RESETEAR ESTILO LUEGO DEL ON HOVER
+function resetHighlight(e) {
+
+    console.log("resetHighlight");
+    geojson.resetStyle(e.target);
+
+    info.update(); //controla la info de la caja
+}
 
 
 
-var circle = L.circle([-25.296772, -57.591099], 500, {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5
-}).addTo(mymap);
+// FUNCION PARA LOS EVENT LISTENERS DE CADA CAPA
+function onEachFeature(feature, layer) {
 
 
-var polygon = L.polygon([
-    [-25.295936, -57.609821],
-    [-25.298526, -57.602194],
-    [-25.296772, -57.591099]
-]).addTo(mymap);
+
+    layer.on('click', function() {  
+    $(".estadisticas").html(feature.properties.NAME_1);
+    console.log("hola")});
+    console.log("hola");
+     layer.bindPopup(feature.properties.name);
+    
+     layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+     //]   click: zoomToFeature
+    });
+}
+
+
+function style(feature) {
+    return {
+        fillColor: "#0092DD",
+        weight: 2,
+        opacity: 1,
+        color: '#0092DD',
+       // dashArray: '3',
+        fillOpacity: 0.8
+    };
+}
+
 
 
 $.getJSON( "/static/js/luque.json", function( data ) {
   console.log(data);
 
-  L.geoJson(data).addTo(mymap);
+  geojson = L.geoJson(data,{
+            style: style ,
+            onEachFeature: onEachFeature,
+           
+            }).addTo(mymap);
+
+      info.addTo(mymap);
 });

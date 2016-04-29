@@ -4,19 +4,17 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
   <!-- Angular Material style sheet -->
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/bootstrap-material-design.min.css' %}">
-   <link rel="stylesheet" href="{% static 'css/ripples.min.css' %}">
-   <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'css/ripples.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
 
+  <!-- Leaflet -->
+  <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
 
-
-
-     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
-
-       {% block meta-tags%}
+  {% block meta-tags%}
   {% endblock %}
 </head>
 <body >
@@ -29,15 +27,6 @@
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
-
-
-
-
- 
-
-
-
-
     <nav class="navbar  navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -47,7 +36,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><img src="{% static 'img/logo-techo.png' %}"></a>
+          <a class="navbar-brand" href="/"><img src="{% static 'img/logo-techo.png' %}"></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-right">
@@ -83,7 +72,9 @@
 
       </script>
 
-   <script src="{% static 'js/portada.js' %}"></script>
+      {% block footer%}
+      {% endblock %}
+ 
   
 
 </body>

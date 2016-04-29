@@ -19,14 +19,16 @@ body {
 
 	<div class="col-md-5">
 		<div id="mapcanvas2"></div>
+
+		<div class="estadisticas"></div>
 	</div>
 	<div class="col-md-7 bienvenida">  
 		<img src="{% static 'img/logo-techo-negativo.png' %}" class="logo">
 		<h1>Relevamiento de Asentamientos Infomales</h1>
 		<h2>Departamento Central</h2>
-		<a class="btn btn-white"> Datos </a>
+		<a class="btn btn-white" > Datos </a>
 		<a class="btn btn-white"> Graficos</a>
-		<a class="btn btn-white"> Mapa</a>
+		<a class="btn btn-white" href="/mapa"> Mapa</a>
 		<a class="btn btn-white"> Metodología</a>
 
 	</div>
@@ -52,3 +54,9 @@ body {
   </div>
   {% endblock %}
 
+
+
+
+     {% block footer%}
+        <script src="{% static 'js/portada.js' %}"></script>
+      {% endblock %}
