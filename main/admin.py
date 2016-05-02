@@ -1,5 +1,5 @@
 from django.contrib import admin
 
-from .models import Relevamiento
+from .models import Asentamiento
 # Register your models here.
-admin.site.register(Relevamiento)
+admin.site.register(Asentamiento)

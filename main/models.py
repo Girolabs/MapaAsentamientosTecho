@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 
 # Create your models here.
-class Relevamiento (models.Model):
+class Asentamiento (models.Model):
 
 	numero_encuesta = models.CharField(max_length = 1000, blank=True)
 	zona = models.CharField(max_length = 1000, blank=True)
@@ -93,7 +93,7 @@ class Relevamiento (models.Model):
 	p55 = models.CharField(max_length = 1000, blank=True)
 
 	def __unicode__(self):
-		return  self.Relevamiento.asentamiento
+		return  self.asentamiento
 
 
 

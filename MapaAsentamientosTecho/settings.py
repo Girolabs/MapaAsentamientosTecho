@@ -37,7 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework', # Django API REST FRAMEWORK
+    'crispy_forms', #Formularios mas bonitos
+    
     'main',
+    'constance',
+    'constance.backends.database',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -120,3 +125,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
+}
+
+CONSTANCE_CONFIG = {
+    'THE_ANSWER': (42, 'Answer to the Ultimate Question of Life, '
+                       'The Universe, and Everything'),
+}
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'

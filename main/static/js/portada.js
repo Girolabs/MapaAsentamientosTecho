@@ -1,7 +1,8 @@
-var mymap = L.map('mapcanvas2', { zoomControl:false , scrollWheelZoom:false, dragging:false}).setView([-23.608576, -57.793437], 6);
+var mymap = L.map('mapcanvas2', { zoomControl:true , scrollWheelZoom:false, dragging:false}).setView([-23.608576, -57.793437], 6);
 
 
 /* CUADRO DE INFORMACION PERSONALIZADO */
+/* El cuadro aparece en la esquina superior derecha */
 /* source:http://leafletjs.com/examples/choropleth.html*/
 
 var info = L.control();
@@ -14,10 +15,9 @@ info.onAdd = function (map) {
 
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
-    console.log("estoy eb update")
-    console.log(props);
+      
     this._div.innerHTML =   (props ?
-        '<h4>'+ props.NAME_1+'</h4>' +    '<b>Cantidad de Asentamiento</b><br />' + props.NAME_1 + ' personas'
+        '<h4>'+ props.NAME_2+'</h4>' +    '<b>Cantidad de Asentamiento</b><br />' + props.NAME_1 + ' personas'
         : '<h4>'+ "Mapa"+'</h4>' + 'Posisionate sobre un departamento');
 };
 
@@ -61,20 +61,10 @@ function zoomToFeature(e) {
 
 // FUNCION PARA LOS EVENT LISTENERS DE CADA CAPA
 function onEachFeature(feature, layer) {
-    // does this feature have a property named popupContent?
-    if (feature.properties && feature.properties.NAME_1=="Central" || feature.properties.NAME_1=="Asunción" ) {
-      
-
-      /*  layer.on('click', function() {  
-                                        $(".estadisticas").html(feature.properties.NAME_1);
-                                        console.log("hola")
-
-                                        });*/
-    }
-     layer.on({
+        layer.on({
         mouseover: highlightFeature,
         mouseout: resetHighlight,
-     //]   click: zoomToFeature
+     // click: zoomToFeature
     });
 }
 
@@ -83,7 +73,7 @@ function getColor(d) {
     return d == "Asunción" ? 'white' :
            d == "Central"  ? 'White' :
          
-                      'transparent';
+                      'transparent'; //default
 }
 
 
@@ -100,28 +90,56 @@ function style(feature) {
 
 
 
-//Traigo el json
-$.getJSON( "/static/py.json", function( data ) {
-          console.log(data);
-
-          var myStyle = {
+//Traigo el json de PY
+$.getJSON( "/static/py.json", function( data ) {  
+        console.log(data.features);
+        var myStyle = {
             "color": "white",
             "weight": 1,
             "opacity": 0.65
-            };
+        };
 
         geojson = L.geoJson(data,{
             style: style ,
             onEachFeature: onEachFeature,
             pointToLayer: function (feature, latlng) {
             return L.circleMarker(latlng);
-        }
+            },
+            filter: function(feature, layer) {
+                return feature.properties.NAME_1 != "Central";
+            }
             })
           .addTo(mymap);
 
         info.addTo(mymap);
+        
+
+     $.getJSON ( "/static/py_ciudad.json", function( data ) { 
+
+
+           var returnedData = $.grep(data.features, function (element, index) {
+                    return element.properties.NAME_1 == 'Central';
+                });
+
+           L.geoJson(returnedData,{
+             style: style ,
+              onEachFeature: onEachFeature,
+           }).addTo(mymap);   
+           poligonos = L.geoJson(returnedData);
+
+           mymap.fitBounds(poligonos.getBounds());   
+
+
+
+        })
+
+
 
 
 });/* fin de getJSON*/
+
+
+
+
 
 
