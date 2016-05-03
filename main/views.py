@@ -20,6 +20,11 @@ def index(request):
 def mapa(request):
 	return render_to_response('mapa.html')
 
+
+def datos(request):
+    return render_to_response('datos.html')
+
+
 # Create your views here.
 
 
