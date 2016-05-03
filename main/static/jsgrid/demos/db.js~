@@ -1,0 +1,48 @@
+$(function() {
+
+           $("#jsGrid").jsGrid({
+               height: "auto",
+               width: "100%",
+               sorting: true,
+               filtering: true,
+               ignoreCase:true,
+               paging: false,
+               autoload: true,
+               controller: {
+                   loadData: function(filter) {
+                       var d = $.Deferred();
+
+                       $.ajax({
+                           url: "http://services.odata.org/V3/(S(3mnweai3qldmghnzfshavfok))/OData/OData.svc/Products",
+                           dataType: "json",
+                          data: filter,
+                       }).done(function(result) {
+                               console.log(result.value)
+                                         result =  $.grep(result.value, function(client) {
+                           return (!filter.Description || client.Description.toLowerCase().indexOf(filter.Description.toLowerCase()) > -1 )
+                               ;
+                       })
+
+                               d.resolve(result);
+                                
+                       });
+
+                       return d.promise();
+                   }
+               },
+               fields: [
+                   { name: "Name", type: "text" },
+                   { name: "Description", type: "textarea", width: 150 },
+                   { name: "Rating", type: "number", width: 50, align: "center",
+                       itemTemplate: function(value) {
+                           return $("<div>").addClass("rating").append(Array(value + 1).join("&#9733;"));
+                       }
+                   },
+                   { name: "Price", type: "number", width: 50,
+                       itemTemplate: function(value) {
+                           return value.toFixed(2) + "$"; }
+                   }
+               ]
+           });
+
+       });
