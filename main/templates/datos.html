@@ -1,0 +1,96 @@
+ {% extends "base.html" %}
+ {% load staticfiles %}
+
+ {% block meta-tags%}
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'jsgrid/demos/demos.css' %}" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'jsgrid/css/jsgrid.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'jsgrid/css/theme.css' %}" />
+
+ {% endblock %}
+
+
+  {% block contenido%}
+
+<div class="container datos">
+    <h1>Grilla de datos</h1>
+    <div id="jsGrid"></div>
+</div>
+
+  {% endblock %}
+
+
+     {% block footer%}
+
+
+
+
+    <!--<script src="{% static 'jsgrid/external/jquery/jquery-1.8.3.js' %}"></script>-->
+
+    <script src="{% static 'jsgrid/src/jsgrid.core.js' %}"></script>
+    <script src="{% static 'jsgrid/src/jsgrid.load-indicator.js' %}"></script>
+    <script src="{% static 'jsgrid/src/jsgrid.load-strategies.js' %}"></script>
+    <script src="{% static 'jsgrid/src/jsgrid.sort-strategies.js' %}"></script>
+    <script src="{% static 'jsgrid/src/jsgrid.field.js' %}"></script>
+    <script src="{% static 'jsgrid/src/fields/jsgrid.field.text.js' %}"></script>
+    <script src="{% static 'jsgrid/src/fields/jsgrid.field.number.js' %}"></script>
+    <script src="{% static 'jsgrid/src/fields/jsgrid.field.select.js' %}"></script>
+    <script src="{% static 'jsgrid/src/fields/jsgrid.field.checkbox.js' %}"></script>
+    <script src="{% static 'jsgrid/src/fields/jsgrid.field.control.js' %}"></script>
+
+    <script>
+
+	$(function() {
+
+           $("#jsGrid").jsGrid({
+               height: "auto",
+               width: "100%",
+               sorting: true,
+               filtering: true,
+               //ignoreCase:false,
+               paging: true,
+               autoload: true,
+               controller: {
+                   loadData: function(filter) {
+                       var d = $.Deferred();
+                       $.ajax({
+                           url: "http://localhost:8000/asentamiento/",
+                           dataType: "json",
+                          //data: filter,
+                       }).done(function(result) {
+                               console.log(result)
+                                result =  $.grep(result, function(client) {
+                                console.log(filter)
+
+                                console.log(client.asentamiento.toLowerCase());
+                                console.log(filter.asentamiento.toLowerCase());
+                                return (!filter.asentamiento || client.asentamiento.toLowerCase() === filter.asentamiento.toLowerCase() ) 
+&& (!filter.ciudad || client.ciudad.toLowerCase().indexOf(filter.ciudad.toLowerCase()) > -1 );
+                       			}) /* Fin Grep*/
+								
+                               d.resolve(result);
+                                console.log("Dentro");
+                              console.log(filter);
+                                
+                       }); /* Fin Done */
+                       console.log("Fuera");
+                           console.log(filter);
+                       return d.promise();
+
+                   }
+               },
+               fields: [
+                   { name: "ciudad", type: "text", width: 150 },
+                   { name: "asentamiento", type: "text", width: 150 },
+              
+               ]
+           });
+
+       });
+	
+</script>
+
+      {% endblock %}

@@ -16,6 +16,7 @@ router.register(r'asentamiento', views.AsentamientoViewSet)
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^mapa$', views.mapa, name='mapa'),
+    url(r'^datos$', views.datos, name='datos'),
      #url(r'^asentamiento/$', views.AsentamientoViewSet.as_view()),
 
      url(r'^', include(router.urls)),
