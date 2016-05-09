@@ -26,7 +26,7 @@ info.update = function (props) {
     console.log(props);
     this._div.innerHTML =   (props ?
         '<h4>'+ props.name+'</h4>' +    '<b>Cantidad de Asentamiento</b><br />' + props.name + ' personas'
-        : '<h4>'+ "Mapa"+'</h4>' + 'Posisionate sobre un departamento');
+        : '<h4>'+ "Mapa"+'</h4>' + 'Posicionate sobre un departamento');
 };
 
 
@@ -105,5 +105,65 @@ $.getJSON( "/static/js/luque.json", function( data ) {
            
             }).addTo(mymap);
 
+    var fuse = new Fuse(data.features, {
+        keys: ['properties.name', 'properties.cuisine']
+    });
+
+    /* Search un MultiLayers */
+
+   
+
+    var poiLayers = L.layerGroup([
+        L.geoJson(data,{ 
+            style: style ,
+            onEachFeature: onEachFeature,
+           
+            }),
+        //L.geoJson(pharmacy, geojsonOpts),
+        //L.geoJson(restaurant, geojsonOpts)
+    ])
+   
+
+    /* Configuration of Search box*/
+
+
+
+  new L.Control.Search({layer: geojson,
+    autoType: true,
+    propertyName: 'name', // nombre de la propiedad a buscar
+    filterData: function(text, records) { // filtro fuzzy
+            var jsons = fuse.search(text),
+                ret = {}, key;
+            
+            for(var i in jsons) {
+                key = jsons[i].properties.name;
+                ret[ key ]= records[key];
+            }
+
+            console.log(jsons,ret);
+            return ret;
+        },
+    moveToLocation: function(latlng, title, map) { // zoom al punto buscado
+            //map.fitBounds( latlng.layer.getBounds() );
+            var zoom = map.getBoundsZoom(latlng.layer.getBounds());
+            map.setView(latlng, zoom); // access the zoom
+        },
+    buildTip: function(text, val) { // tag alado del nombre
+            var type = val.layer.feature.properties.name;
+            return '<a href="#" class="'+type+'">'+text+'<b>'+type+'</b></a>';
+        }
+
+
+  }).addTo(mymap);
+
       info.addTo(mymap);
 });
+
+
+var sidebar = L.control.sidebar('sidebar', {
+   
+    position: 'left'
+}).addTo(mymap);
+
+
+
