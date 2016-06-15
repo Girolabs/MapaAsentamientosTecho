@@ -26,8 +26,8 @@ body {
 	</div>
 	<div class="col-md-7 bienvenida">  
 		<img src="{% static 'img/logo-techo-negativo.png' %}" class="logo">
-		<h1>Relevamiento de Asentamientos Infomales</h1>
-		<h2>Departamento Central</h2>
+		<h1>Relevamiento de Asentamientos Precarios</h1>
+		<h3>Área Metropolitana</h3>
 		<a class="btn btn-white " href="/datos"> Datos </a>
 		<a class="btn btn-white"> Graficos</a>
 		<a class="btn btn-white" href="/mapa"> Mapa</a>
@@ -41,11 +41,23 @@ body {
   <div class="row">
 
   	 <div class="col-md-4 cta-princpal"><h3>Que es Techo</h3>
+      <p>TECHO es una organización presente en Latinoamérica y el Caribe, que busca superar la situación de pobreza que viven miles de personas en asentamientos precarios, con la participación de vecinos y voluntarios.</p>
+
+      <p>TECHO tiene la convicción de que la pobreza se puede superar definitivamente si la sociedad en su conjunto logra reconocer que este es un problema prioritario y trabaja activamente para resolverlo.</p>
+
 
   </div>
   <div class="col-md-4 cta-principal"><h3>¿Que es el Relevamiento?</h3> </div>
-  <div class="col-md-4 cta-principal"><h3>Reporte</h3></div>
+  <div class="col-md-4 cta-principal">
+    <h3>Reporte</h3>
 
+
+
+  </div>
+<script type="text/javascript">
+asentamientos = {{asentamiento|safe}};
+
+</script>
 
   </div>
 

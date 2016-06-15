@@ -78,7 +78,7 @@
     
 }
 
-.h1, .h2, .h3, .h4, body, h1, h2, h3, h4, h5, h6 {
+.h1, .h2, .h3, .h4, h1, h2, h3, h4, h5, h6 {
     font-family: Novecento,Helvetica,Arial,sans-serif;
     font-weight: bold;
 }
@@ -86,17 +86,29 @@
 
 
 
-div.container {
-    font-family: Novecento;
+
+
+div.container, p , a  {
+    font-family: Vista;
 }
 
 
 .navbar, .navbar.navbar-default {
 	background: white;
+    border-bottom: solid #0092DD;
 }
 
 .navbar .btn {
     margin: 0px;
+}
+
+.navbar .navbar-brand {
+    top:    -5px;
+}
+
+ul.nav.navbar-nav.navbar-right a {
+    color: #0092DD;
+    font-weight: 400;
 }
 
 
@@ -181,8 +193,118 @@ a.btn.btn-white:hover {
 }
 
 
+#mapcanvas2 a.leaflet-control-zoom-in, #mapcanvas2 a.leaflet-control-zoom-out {
+    background-color: transparent;
+    border-color: transparent;
+    color: white;
+}
+
+#mapcanvas2 a.leaflet-control-zoom-in:hover,#mapcanvas2 a.leaflet-control-zoom-out:hover {
+    background-color: transparent;
+    border-color: transparent;
+    color: white;
+}
+
+#mapcanvas  .info.leaflet-control {
+    background: rgba(255, 255, 255, 0.58);
+    padding: 26px;
+}
 
 
+.search-tooltip a.search-tip {
+  
+    border-radius: 0px;
+    padding: 10px;
+    color: #0092DD;
+    background: #E7F4F3;
+}
 
 
+.leaflet-control-search .search-input {
+    height: 29px;
+    border: none;
+    border-bottom: solid 1px;
+    border-radius: 0px;
+}
 
+
+tr.jsgrid-alt-row, tr.jsgrid-row {
+    font-size: 10px;
+}
+
+
+.jsgrid-header-sortable {
+    font-size: 10px;
+        text-align: center;
+}
+
+
+.jsgrid-grid-body {
+        overflow-y: auto;
+
+}
+
+.jsgrid-grid-header {
+      overflow-y: auto;
+}
+
+h1.center {
+    text-align: center;
+    margin: 30px 0px;
+}
+
+.form-control.input-sm {
+    height: 35px;
+}
+
+
+.dataTables_wrapper thead {
+    background: #DA9636;
+    color: white;
+}
+
+tfoot {
+       display: table-header-group;
+    background: #0092DD;
+}
+
+
+thead .form-group {
+    margin-top: 0px !important;
+    margin-left: 0px !important;
+
+}
+
+table.DTFC_Cloned thead tr {
+    background: transparent;
+}
+
+.sidebar-left.collapsed~.sidebar-map .leaflet-left {
+    left: 5px;
+    top: 40px;
+}
+
+.sidebar-tabs {
+    background: transparent;
+}
+
+.sidebar.leaflet-touch {
+    border: 2px solid rgba(0,0,0,0);
+        z-index: 1;
+    border-radius: 0px;
+}
+
+.sidebar-tabs>li, .sidebar-tabs>ul>li {
+    width: 90%;
+    border: solid rgba(0, 0, 0, 0.2);
+    background: white;
+}
+
+.sidebar-left .sidebar-close {
+    top: 10px;
+}
+
+.sidebar-left .sidebar-content {
+  /*  left: 0px !important;*/
+    /* right: 0; */
+}

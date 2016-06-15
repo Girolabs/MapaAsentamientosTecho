@@ -10,10 +10,18 @@ from models import Asentamiento
 from rest_framework import filters
 from rest_framework.views import APIView
 from rest_framework import generics
+from django.db.models import Count
 
+import json
+from django.core import serializers
 
 def index(request):
-    return render_to_response('index.html')
+    
+    ciudades = Asentamiento.objects.values("ciudad").annotate(total=Count('ciudad'))
+    #asentamiento = serializers.serialize('json',Asentamiento.objects.all())
+    asentamiento = json.dumps(list(ciudades))
+    context = {'asentamiento':asentamiento}
+    return render_to_response('index.html',context)
 
 
 

@@ -13,12 +13,71 @@ info.onAdd = function (map) {
     return this._div;
 };
 
+/* Busca en un array de objetos el valor deseado*/
+
+function getObjects(obj, key, val) {
+    var objects = [];
+    for (var i in obj) {
+        if (!obj.hasOwnProperty(i)) continue;
+        if (typeof obj[i] == 'object') {
+            objects = objects.concat(getObjects(obj[i], key, val));
+        } else if (i == key && obj[key] == val) {
+            objects.push(obj);
+        }
+    }
+    return objects;
+}
+
+
+
+
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
-      
-    this._div.innerHTML =   (props ?
-        '<h4>'+ props.NAME_2+'</h4>' +    '<b>Cantidad de Asentamiento</b><br />' + props.NAME_1 + ' personas'
+   if(props){
+    str = props.NAME_2.toLowerCase();     
+    str = str.replace(/[àáâãäå]/g,"a");
+    str = str.replace(/[èéêë]/g,"e");
+    str = str.replace(/[íìîïí]/g,"i");
+    str = str.replace(/[òóôö]/g,"o");
+    str = str.replace(/[ùúûü]/g,"u");
+
+  
+    
+
+    if (str == 'fernando de la mora') {
+        str = 'fdo de la mora';
+
+    }
+
+    console.log(str);
+    
+
+    datos_asentamiento = getObjects(asentamientos, 'ciudad',str)[0];
+
+
+   
+ 
+
+if (!datos_asentamiento){
+this._div.innerHTML =   (props ?
+        '<h4>'+ props.NAME_2+'</h4>' +    '<b>Cantidad de Asentamientos</b><br />' + 'sin registros de'+ ' asentamientos'
         : '<h4>'+ "Mapa"+'</h4>' + 'Posisionate sobre un departamento');
+
+        
+    }
+else {
+
+    this._div.innerHTML =   (props ?
+        '<h4>'+ props.NAME_2+'</h4>' +    '<b>Cantidad de Asentamientos</b><br />' + datos_asentamiento.total + ' asentamientos'
+        : '<h4>'+ "Mapa"+'</h4>' + 'Posisionate sobre un departamento');
+
+}
+
+    } // end if props
+
+
+   
+
 };
 
 
@@ -31,22 +90,31 @@ function highlightFeature(e) {
     var layer = e.target;
 
     layer.setStyle({
-        weight: 2,
+        weight: 1,
         color: '#666',
         dashArray: '',
         fillOpacity: 0.7
     });
 
-    if (!L.Browser.ie && !L.Browser.opera) {
+
+// Para traer el poligono al frente
+  /*  if (!L.Browser.ie && !L.Browser.opera) {
         layer.bringToFront();
-    }
+    }*/
     //console.log(layer.feature.properties);
     info.update(layer.feature.properties);  //controla la info de la caja
 
 }
 // FUNCION PARA RESETEAR ESTILO LUEGO DEL ON HOVER
 function resetHighlight(e) {
-    geojson.resetStyle(e.target);
+    var layer = e.target;
+    //geojson.resetStyle(e.target);
+     layer.setStyle({
+        weight: 1,
+        color: '#888',
+        dashArray: '',
+        fillOpacity: 1
+    });
 
     info.update(); //controla la info de la caja
 }
@@ -70,17 +138,53 @@ function onEachFeature(feature, layer) {
 
 
 function getColor(d) {
-    return d == "Asunción" ? 'white' :
+
+     str = d.toLowerCase();     
+    str = str.replace(/[àáâãäå]/g,"a");
+    str = str.replace(/[èéêë]/g,"e");
+    str = str.replace(/[íìîïí]/g,"i");
+    str = str.replace(/[òóôö]/g,"o");
+    str = str.replace(/[ùúûü]/g,"u");
+
+  
+    
+
+    if (str == 'fernando de la mora') {
+        str = 'fdo de la mora';
+
+    }
+    console.log(str);
+
+    datos_asentamiento = getObjects(asentamientos, 'ciudad',str)[0];
+    console.log(datos_asentamiento);
+    if (datos_asentamiento){
+        console.log("hay" + datos_asentamiento.ciudad);
+        return '#ED7A0D';
+    }
+else{
+    return d == "Asunción" ? '#ED7A0D' :
            d == "Central"  ? 'White' :
          
                       'transparent'; //default
+    }
 }
 
 
 function style(feature) {
     return {
-        fillColor: getColor(feature.properties.NAME_1),
-        weight: 2,
+        fillColor: 'transparent',
+        weight: 0.2,
+        opacity: 1,
+        color: '#888',
+       // dashArray: '3',
+        fillOpacity: 1
+    };
+}
+
+function styleCiudad(feature) {
+    return {
+        fillColor: getColor(feature.properties.NAME_2),
+        weight: 1,
         opacity: 1,
         color: '#888',
        // dashArray: '3',
@@ -93,15 +197,16 @@ function style(feature) {
 //Traigo el json de PY
 $.getJSON( "/static/py.json", function( data ) {  
         console.log(data.features);
-        var myStyle = {
-            "color": "white",
+        var EstiloDepartamento = {
+            "color": "#888",
             "weight": 1,
-            "opacity": 0.65
+           // "opacity": 0.65
+            fillColor: 'transparent',
         };
 
         geojson = L.geoJson(data,{
-            style: style ,
-            onEachFeature: onEachFeature,
+            style: EstiloDepartamento ,
+           onEachFeature: onEachFeature,
             pointToLayer: function (feature, latlng) {
             return L.circleMarker(latlng);
             },
@@ -122,12 +227,14 @@ $.getJSON( "/static/py.json", function( data ) {
                 });
 
            L.geoJson(returnedData,{
-             style: style ,
+             style: styleCiudad ,
               onEachFeature: onEachFeature,
            }).addTo(mymap);   
            poligonos = L.geoJson(returnedData);
 
-           mymap.fitBounds(poligonos.getBounds());   
+           mymap.fitBounds(poligonos.getBounds()); 
+
+           console.log(asentamientos);  
 
 
 

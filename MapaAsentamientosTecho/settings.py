@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'main',
     'constance',
     'constance.backends.database',
+     'import_export',
 ]
 
 MIDDLEWARE_CLASSES = [

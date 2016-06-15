@@ -17,4 +17,4 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class AsentamientoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Asentamiento
-        fields = ('asentamiento', 'ciudad')
+      #  fields = ('asentamiento', 'ciudad')
