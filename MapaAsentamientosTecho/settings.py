@@ -70,6 +70,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                 'constance.context_processors.config',
+
             ],
         },
     },
@@ -133,7 +135,8 @@ REST_FRAMEWORK = {
 }
 
 CONSTANCE_CONFIG = {
-    'THE_ANSWER': (42, 'Answer to the Ultimate Question of Life, '
-                       'The Universe, and Everything'),
+   
+    'dominio': ('localhost:8000', 'Dominio de la plataforma' , str),
+    'Analytics': ('Analytics ID', 'Google Analytics' , str),
 }
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'

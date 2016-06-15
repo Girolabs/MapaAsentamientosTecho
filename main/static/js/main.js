@@ -193,7 +193,7 @@ function style(feature) {
 
 var datos_encuesta;
 
-$.getJSON( "http://localhost:8000/asentamiento/", function( encuesta ) { 
+$.getJSON( "http://"+dominio+"/asentamiento/", function( encuesta ) { 
   datos_encuesta = encuesta;
   console.log(encuesta);
 

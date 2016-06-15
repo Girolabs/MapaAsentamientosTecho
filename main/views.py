@@ -14,23 +14,26 @@ from django.db.models import Count
 
 import json
 from django.core import serializers
+from constance import config
 
 def index(request):
     
     ciudades = Asentamiento.objects.values("ciudad").annotate(total=Count('ciudad'))
     #asentamiento = serializers.serialize('json',Asentamiento.objects.all())
     asentamiento = json.dumps(list(ciudades))
-    context = {'asentamiento':asentamiento}
+    context = {'asentamiento':asentamiento, 'config': config}
     return render_to_response('index.html',context)
 
 
 
 def mapa(request):
-	return render_to_response('mapa.html')
+    context = {'config': config}
+    return render_to_response('mapa.html', context)
 
 
 def datos(request):
-    return render_to_response('datos.html')
+    context = {'config': config}
+    return render_to_response('datos.html', context)
 
 
 # Create your views here.

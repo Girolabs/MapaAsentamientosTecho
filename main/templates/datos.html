@@ -106,11 +106,11 @@ $(document).ready(function() {
         var title = $(this).text();
         $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
     } );*/
-
+dominio = "{{ config.dominio }}" ;
 
    table = $('#tabla-asentamientos').DataTable( {
         "ajax": {
-                    url: 'http://localhost:8000/asentamiento/',
+                    url: 'http://'+dominio+'/asentamiento/',
                     dataSrc: ''
                 },
          "pageLength": 50,

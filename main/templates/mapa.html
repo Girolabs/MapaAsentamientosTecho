@@ -128,5 +128,6 @@
 
      {% block footer%}
             <script src="{% static 'js/heartcode-canvasloader-min.js' %}"></script>
+            <script type="text/javascript">dominio = "{{ config.dominio }}";</script>
         <script src="{% static 'js/main.js' %}"></script>
       {% endblock %}
