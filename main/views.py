@@ -4,8 +4,8 @@ from django.http import HttpResponse
 
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from serializers import UserSerializer, GroupSerializer, AsentamientoSerializer
-from models import Asentamiento
+from main.serializers import UserSerializer, GroupSerializer, AsentamientoSerializer
+from main.models import Asentamiento
 
 from rest_framework import filters
 from rest_framework.views import APIView
