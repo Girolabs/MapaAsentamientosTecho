@@ -375,3 +375,10 @@ table.DTFC_Cloned thead tr {
 .row.info-portada {
     padding: 30px 0px;
 }
+
+footer {
+background: #35383B;
+    overflow: hidden;
+
+    padding: 10px 5px;
+}
