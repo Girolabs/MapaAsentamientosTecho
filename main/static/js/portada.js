@@ -125,6 +125,17 @@ function zoomToFeature(e) {
     mymap.fitBounds(e.target.getBounds());
 }
 
+function goToMap (e){
+    var layer = e.target;
+    if(layer.feature.properties.NAME_2){
+        alert(layer.feature.properties.NAME_2);
+        window.location.href = 'http://'+dominio+'/mapa/#ciudad-'+ layer.feature.properties.NAME_2;
+     
+    }
+
+    
+}
+
 
 
 // FUNCION PARA LOS EVENT LISTENERS DE CADA CAPA
@@ -132,7 +143,7 @@ function onEachFeature(feature, layer) {
         layer.on({
         mouseover: highlightFeature,
         mouseout: resetHighlight,
-     // click: zoomToFeature
+        click: goToMap
     });
 }
 

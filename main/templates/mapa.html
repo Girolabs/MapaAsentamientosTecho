@@ -6,8 +6,10 @@
   {% block meta-tags%}
    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'Leaflet-sidebar/css/leaflet-sidebar.min.css' %}">
-    <link rel="stylesheet" href="{% static 'leaflet-search/src/leaflet-search.css' %}">
-     <link rel="stylesheet" href="{% static 'leaflet-search/src/leaflet-search.mobile.css' %}">
+<link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+
+   
+         <link rel="stylesheet" href="{% static 'leaflet-search/src/leaflet-search.css' %}">
     <!-- Fuzzy search -->
      <script src="//cdnjs.cloudflare.com/ajax/libs/fuse.js/1.2.2/fuse.min.js"></script>
       <!-- Sidebar Map -->
@@ -72,34 +74,34 @@
 	            <div class="sidebar-pane" id="settings">
 
 	                <h1 class="sidebar-header">Filtros<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-<div class="form-group">
-  <label for="sel1">Selecciona la Ciudad:</label>
+					<div class="form-group">
+					  <label for="sel1">Selecciona la Ciudad:</label>
 
-  <select class="form-control" id="sel1">
-  	<option></option>
-		<option>Luque</option>
-		<option>Fernando de la Mora</option>
-		<option>Limpio</option>
-		<option>Lambare</option>
-		<option>San Lorenzo</option>
-		<option>Capiata</option>
-		<option>Ñemby</option>
-		<option>Mariano Roque Alonso</option>
-		<option>San Antonio</option>
-  </select>
-</div>
+					  <select class="form-control" id="sel1">
+					  		<option></option>
+							<option>Luque</option>
+							<option>Fernando de la Mora</option>
+							<option>Limpio</option>
+							<option>Lambare</option>
+							<option>San Lorenzo</option>
+							<option>Capiata</option>
+							<option>Ñemby</option>
+							<option>Mariano Roque Alonso</option>
+							<option>San Antonio</option>
+					  </select>
+					</div>
 
-<h4>Tipo de Conexion de Agua</h4>
-<label class="radio-inline"><input type="radio" name="optradio" class="agua" value="irregular">conexion irregular</label>
-<label class="radio-inline"><input type="radio" name="optradio" class="agua" value="regular">conexion rregular</label>
-<label class="radio-inline"><input type="radio" name="optradio" class="agua" value="comunal">pozo comunal</label>
-<label class="radio-inline"><input type="radio" name="optradio" class="agua" value="privado">pozo privado</label>
+					<h4>Tipo de Conexion de Agua</h4>
+					<label class="radio-inline"><input type="radio" name="agua" class="agua" value="conexion irregular">conexion irregular</label>
+					<label class="radio-inline"><input type="radio" name="agua" class="agua" value="conexión regular">conexion regular</label>
+					<label class="radio-inline"><input type="radio" name="agua" class="agua" value="pozo comunal">pozo comunal</label>
+					<label class="radio-inline"><input type="radio" name="agua" class="agua" value="pozo privado">pozo privado</label>
 
 
 
-<h4>Tipo de Conexion Energía Electrica</h4>
-<label class="radio-inline"><input type="radio" name="optradio" class="energia" value="irregular">conexion irregular</label>
-<label class="radio-inline"><input type="radio" name="optradio" class="energia" value="ande">ANDE</label>
+					<h4>Tipo de Conexion Energía Electrica</h4>
+					<label class="radio-inline"><input type="radio" name="energia" class="energia" value="irregular">conexion irregular</label>
+					<label class="radio-inline"><input type="radio" name="energia" class="energia" value="ande">ANDE</label>
 
 
 	            </div>
@@ -117,6 +119,36 @@
    <div id="mapcanvas" class="sidebar-map"></div>
 <div id="canvasloader-container" class="wrapper-loader">
 </div>
+<div id="sidebar-wrapper">
+           <!-- <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Start Bootstrap
+                    </a>
+                </li>
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#">Shortcuts</a>
+                </li>
+                <li>
+                    <a href="#">Overview</a>
+                </li>
+                <li>
+                    <a href="#">Events</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+            </ul> -->
+        </div>
 
 
 

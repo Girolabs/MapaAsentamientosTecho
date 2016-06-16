@@ -29,6 +29,8 @@ info.onAdd = function (map) {
     this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
     this._divFull = L.DomUtil.create('div', 'infoFull');
    // this.update();
+    this._div.innerHTML =  '<h4>'+ "Mapa"+'</h4>' + 'Posicionate sobre un asentamiento';
+
     return this._div;
 };
 
@@ -48,26 +50,55 @@ function getObjects(obj, key, val) {
 }
 
 
+function cerrarInfo(){
+  $(".cerrar-info").click(function(event){
+
+  event.preventDefault();
+ 
+$(".leaflet-control.info").css("display", "none");
+
+})
+
+
+}
+
+
+
 
 info.updateFull = function (props) {    
   //  console.log("estoy en update")
     //console.log(props.id);
    // console.log("Datos encuesta");
   //  console.log(datos_encuesta[1]);
-  console.log("UPDATEFULL")
+  console.log("UPDATEFULL");
+  $(".leaflet-control.info").css("display", "block");
+  
+
   if (props) {
     console.log(props);
     
       info_asentamiento = getObjects(datos_encuesta,'identificador',String(props.id));
     console.log(info_asentamiento[0]);
 
-    this._div.innerHTML =   '<h4> '+  props.nombre +'</h4>' +    
+    this._div.innerHTML = 
 
-    '<b>Cantidad de Familias</b><p>'     + info_asentamiento[0].numero_familias + '</p>' +
-     '<b>Cantidad aprox. de viviendas</b><p>'     + info_asentamiento[0].numero_aprox_viviendas + '</p>' +
-     '<b><i class="fa fa-tint" aria-hidden="true"style="font-size: 35px;"></i>Tipo de provision de Agua </b><p>'     + info_asentamiento[0].agua_tipo_provision + '</p> '  +
+    '<div class="col-md-12"><div class="row"><a ><i class="fa fa-times cerrar-info" aria-hidden="true"></i></a>'  +
+    '<h4> '+  props.nombre+ '-' + info_asentamiento[0].ciudad + '</h4>' + 
+    '<div class="col-md-6"><b><i class="flaticon-tiles info-icon"></i> Superficie</b><p>'     + info_asentamiento[0].superficie + ' metros cuadrados</p></div>' +   
+    '<div class="col-md-6"><b><i class="flaticon-user-black-close-up-shape info-icon"></i> Poblador mas antiguo</b><p>'     + info_asentamiento[0].poblador_mas_antiguo + '</p></div>' +  
+        '<div class="col-md-6"><b><i class="flaticon-multiple-users-silhouette info-icon"></i>Cantidad de Familias</b><p>'     + info_asentamiento[0].numero_familias + '</p></div>' +
+     '<div class="col-md-6"><b><i class="flaticon-neighborhood info-icon "></i>Cantidad aprox. de viviendas</b><p>'     + info_asentamiento[0].numero_aprox_viviendas + '</p></div>' +
+    
 
-    '<b><i class="fa fa-bolt" aria-hidden="true" style="font-size: 35px;"></i>Conexion Electrica</b><p>'     + info_asentamiento[0].energia_tipo_provision + ' </p>' 
+     '<div class="col-md-6"><b><i class="fa fa-tint info-icon" aria-hidden="true"></i>Provisión de Agua </b><p>'     + info_asentamiento[0].agua_tipo_provision + '</p> </div>'  +
+
+    '<div class="col-md-6"><b><i class="fa fa-bolt info-icon" aria-hidden="true" ></i>Conexion Electrica</b><p>'     + info_asentamiento[0].energia_tipo_provision + ' </p></div>' +
+    '<div class="col-md-6"><b><i class="flaticon-bathroom info-icon" aria-hidden="true" ></i>Tipo de Desague</b><p>'     + info_asentamiento[0].excretas + ' </p></div>' +
+    '<div class="col-md-6"><b><i class="flaticon-lamp-post info-icon" aria-hidden="true"></i>Alumbrado Publico</b><p>'     + info_asentamiento[0].alumbrado_publico + ' <br>' +  info_asentamiento[0].alumbrado_publico_otro+ ' </p></div>' +
+    '<div class="col-md-6"><b><i class="flaticon-signs info-icon" aria-hidden="true" ></i>Combustible para cocinar</b><p>'     + info_asentamiento[0].cocina_metodo + ' <br>' +info_asentamiento[0].cocina_metodo_otro + ' </p></div>' +
+    '<div class="col-md-6"><b><i class="flaticon-garbage info-icon" aria-hidden="true"></i>Recolección de basura</b><p>'     + info_asentamiento[0].problema_eliminacion_basura + '<br> ' +info_asentamiento[0].eliminacion_basura_tipo + ' </p></div>' +
+    '<div class="col-md-6"><b><i class="flaticon-people info-icon" aria-hidden="true" ></i>Comisión Vecinal</b><p>'     + info_asentamiento[0].comision_vecinal + ' </p></div> </div></div>'
+
 
 
     
@@ -85,6 +116,8 @@ info.updateFull = function (props) {
 
 
   };
+
+  cerrarInfo();
   
 
    
@@ -189,6 +222,17 @@ function style(feature) {
     };
 }
 
+function styleCiudades(feature) {
+    return {
+        fillColor: "transparent",
+        weight: 1,
+        opacity: 1,
+        color: '#A29E9A',
+       // dashArray: '3',
+        fillOpacity: 0.8
+    };
+}
+
 /* Traigo los datos de la encuesta*/
 
 var datos_encuesta;
@@ -199,6 +243,24 @@ $.getJSON( "http://"+dominio+"/asentamiento/", function( encuesta ) {
 
 
 /* Traigo los poligonos */
+
+
+
+$.getJSON( "/static/py_ciudad.json", function( data ) {  
+
+ciudades = data;
+
+ciudadesAsuncion = $.grep(ciudades.features, function (element, index) {
+                    return element.properties.NAME_1 == 'Central';
+                });
+
+ CapaCiudades = L.geoJson(ciudadesAsuncion,{
+            style: styleCiudades ,
+           // onEachFeature: onEachFeature,
+           
+            }).addTo(mymap);
+
+
 
 $.getJSON( "/static/js/pais.json", function( data ) {
 
@@ -215,25 +277,51 @@ $.getJSON( "/static/js/pais.json", function( data ) {
 
     if (hash) {
 
-      //  console.log(asentamientos.features);
+
+        console.log(hash.split("-")[0]);
+      if (hash.split("-")[0]== "ciudad"){
+
+        console.log(hash.split("-")[0])
+        console.log(ciudadesAsuncion);
+          var returnedData = $.grep(ciudadesAsuncion, function (element, index) {
+
+                 
+                    
+
+
+                  
+                    return element.properties.NAME_2.toLowerCase() == hash.split("-")[1].toLowerCase();
+                });
+
+           ciudadFocus =  L.geoJson(returnedData);
+           console.log(returnedData);
+             mymap.fitBounds(ciudadFocus.getBounds());
+           
+
+      }
+      else if (hash.split("-")[0]== "asentamiento"){
+
+         //  console.log(asentamientos.features);
       jjj =  jQuery.map(asentamientos.features, function(obj ) {
                                               //console.log(obj.properties.id_central + "-" + hash)
-                                                  if(obj.properties.id == hash)
+                                                  if(obj.properties.id == hash.split("-")[1])
                                                 //    console.log (obj);
                                                      return obj; // or return obj.name, whatever.
                                                   });
                   //console.log(datoAsentamiento);
       targetAsentamiento = jjj[0];
       console.log(jjj)
-      xxx = L.geoJson(targetAsentamiento);
-      console.log(xxx);
+      asentamientoFocus = L.geoJson(targetAsentamiento);
+      
 
-      mymap.fitBounds(xxx.getBounds());
-    //  info.updateFull(targetAsentamiento.properties);
+      mymap.fitBounds(asentamientoFocus.getBounds());
 
-                //  console.log(datoAsentamiento);
-   // alert(hash);
-}
+
+      }
+
+     
+    
+} /* Fin del HASH*/
 
 
   CapaAsentamientos = L.geoJson(data,{
@@ -303,7 +391,9 @@ $.getJSON( "/static/js/pais.json", function( data ) {
 
 });
 
-})
+}) /* Get Departamentos*/
+
+}) /* Get Asentamientos*/
 
 /* Fin de Get de Asentamientos */
 
@@ -325,20 +415,14 @@ $('#limpiar').on('click',function(){
 
 
 /* FILTRO CONEXION REGULAR*/ 
-function Agua (tipo){
- 
- /* var cl = new CanvasLoader('canvasloader-container');
-cl.setColor('#649fbf'); // default is '#000000'
-cl.setShape('spiral'); // default is 'oval'
-cl.setDiameter(142); // default is 40
-cl.setDensity(13); // default is 40
-cl.setRange(1.1); // default is 1.3
-cl.setFPS(13); // default is 24
-cl.show(); // Hidden by default*/
-
-Filtrado = CapaAsentamientos.toGeoJSON();
+function Agua (){
+   
+    tipo = $('input[name=agua]:checked').val()
+    console.log(tipo);
+    if (tipo){
+     Filtrado = CapaAsentamientos.toGeoJSON();
     CapaAsentamientos.clearLayers();
-    CapaAsentamientos = L.geoJson(asentamientos,{
+    CapaAsentamientos = L.geoJson(Filtrado,{
             style: style ,
             onEachFeature: onEachFeature,
             filter: function(feature, layer) {                  
@@ -369,22 +453,68 @@ Filtrado = CapaAsentamientos.toGeoJSON();
                   return false;
           }            
             }).addTo(mymap);
-/*cl.hide();*/
-
-
+}else{
+  console.log("agua no marcado")
+}
 };
 
 
-$( "#sel1" ).change(function() {
+function Energia(){
+
+  
+  
+
+  tipo = $('input[name=energia]:checked').val();
+  console.log(tipo);
+   if (tipo){
+    Filtrado = CapaAsentamientos.toGeoJSON();
+    CapaAsentamientos.clearLayers();
+    CapaAsentamientos = L.geoJson(Filtrado,{
+            style: style ,
+            onEachFeature: onEachFeature,
+            filter: function(feature, layer) {                  
+                  id_poligono = feature.properties.id;
+                  if (id_poligono != null){
+                    id_poligono = id_poligono.toString();
+                  }
+                  else{
+                    id_poligono= '';
+                  }
+                  datoAsentamiento =  jQuery.map(datos_encuesta, function(obj ) {
+                                                //console.log(algo)
+                                                  if(obj.identificador == id_poligono)
+                                                     return obj; // or return obj.name, whatever.
+                                                  });
+                  //console.log(datoAsentamiento);
+                  datoAsentamiento = datoAsentamiento[0];
+                  //console.log(datoAsentamiento);
+                  if (datoAsentamiento) {             
+
+                      if (datoAsentamiento.energia_tipo_provision.toLowerCase() == tipo.toLowerCase()  ){
+                          return true;
+                      }else {
+                          return false;
+                      }
+
+                  }
+                  return false;
+          }            
+            }).addTo(mymap);
+}else{console.log("energia no marcada")}
+}
+
+
+function FiltroCiudad() {
 
 
   ciudad_selecionada =  $('#sel1 option:selected').text();
-
+  console.log(ciudad_selecionada);
 
   if (ciudad_selecionada!=''){
+    console.log("no vacio")
  Filtrado = CapaAsentamientos.toGeoJSON();
   CapaAsentamientos.clearLayers();
-  CapaAsentamientos = L.geoJson(asentamientos,{
+  CapaAsentamientos = L.geoJson(Filtrado,{
             style: style ,
             onEachFeature: onEachFeature,
 
@@ -410,35 +540,50 @@ $( "#sel1" ).change(function() {
             }).addTo(mymap);
 
   }
+  else{
 
+      CapaAsentamientos.clearLayers();
+      CapaAsentamientos = L.geoJson(asentamientos,{
+            style: style ,
+            onEachFeature: onEachFeature,
+
+    
+
+
+
+  }).addTo(mymap);
+}
+
+}
+
+
+$( "#sel1" ).change(function(){
+   FiltroCiudad();   
+   Agua();
+    Energia();
 });
 
 
 
 $( ".agua" ).click(function(){
   //alert(this.value);
-  if (this.value == 'regular') {
-    console.log(this.value)
-        Agua("conexión regular");
-
-  }else{
-     console.log(this.value)
-    Agua("conexion irregular");
-  }
+      FiltroCiudad();   
+    Agua();
+    Energia();
 
  
 })
 
 $( ".energia" ).click(function(){
-  alert(this.value);
+//alert(this.value);
+ 
+ FiltroCiudad();
+ Agua(); 
+ Energia();
+
+
+
+
 })
 
 
-$( document ).ready(function() {
-
-
-
-
-
-   
-});

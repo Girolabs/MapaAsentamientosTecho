@@ -207,7 +207,12 @@ a.btn.btn-white:hover {
 
 #mapcanvas  .info.leaflet-control {
     background: rgba(255, 255, 255, 0.58);
-    padding: 26px;
+      padding: 20px;
+    margin-right: 0px;
+    width: 400px;
+    top: -20px;
+    max-height: 500px;
+    overflow-y: scroll;
 }
 
 
@@ -295,9 +300,10 @@ table.DTFC_Cloned thead tr {
 }
 
 .sidebar-tabs>li, .sidebar-tabs>ul>li {
-    width: 90%;
-    border: solid rgba(0, 0, 0, 0.2);
+      width: 90%;
+    border: solid rgb(177, 177, 177) 2px;
     background: white;
+    border-radius: 5px;
 }
 
 .sidebar-left .sidebar-close {
@@ -307,4 +313,54 @@ table.DTFC_Cloned thead tr {
 .sidebar-left .sidebar-content {
   /*  left: 0px !important;*/
     /* right: 0; */
+}
+
+
+.navbar .navbar-toggle:focus, .navbar .navbar-toggle:hover {
+    /* background-color: #0091DC; */
+    color: #0091DC;
+}
+
+.cerrar-info {
+        position: absolute;
+    right: 5px;
+    font-size: 12px;
+}
+
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after{
+    margin-left: 0px !important; 
+}
+
+.leaflet-control-search.leaflet-control {
+    background: white;
+    box-shadow: none;
+    border: solid rgb(186, 180, 173) 2px;
+}
+
+.leaflet-control-search .search-button{
+    background-position: 5px 4px !important; 
+    height: 30px;
+    width: 30px;
+}
+.info.leaflet-control .fa {
+    font-size: 20px;
+}
+
+
+.info.leaflet-control b {
+    font-family: Novecento;
+    font-size: 10px;
+}
+
+.info-icon {
+    margin-right: 10px;
+    text-align: center;
+    display: block;
+}
+
+
+.info.leaflet-control .col-md-6{
+    text-align: center;
+        min-height: 100px;
 }
