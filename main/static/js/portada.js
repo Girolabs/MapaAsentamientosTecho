@@ -128,7 +128,7 @@ function zoomToFeature(e) {
 function goToMap (e){
     var layer = e.target;
     if(layer.feature.properties.NAME_2){
-        alert(layer.feature.properties.NAME_2);
+        //alert(layer.feature.properties.NAME_2);
         window.location.href = 'http://'+dominio+'/mapa/#ciudad-'+ layer.feature.properties.NAME_2;
      
     }

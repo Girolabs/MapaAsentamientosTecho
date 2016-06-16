@@ -388,3 +388,24 @@ td.dataTables_empty {
     text-align: left !important;
     padding-left: 35px !important;
 }
+
+ul.nav.navbar-nav.navbar-right li:hover {
+    background: #DD4395;
+    color: white !important;
+
+}
+
+ul.nav.navbar-nav.navbar-right li a:hover {
+    
+    color: white !important;
+}
+
+ul.nav.navbar-nav.navbar-right li.active{
+
+      background: #DD4395;
+}
+
+ul.nav.navbar-nav.navbar-right li.active a{
+
+      color: white !important;
+}
