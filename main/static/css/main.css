@@ -379,6 +379,12 @@ table.DTFC_Cloned thead tr {
 footer {
 background: #35383B;
     overflow: hidden;
+    color: white;
 
     padding: 10px 5px;
+}
+
+td.dataTables_empty {
+    text-align: left !important;
+    padding-left: 35px !important;
 }
