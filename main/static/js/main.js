@@ -9,7 +9,7 @@ var satelite = L.tileLayer('https://api.mapbox.com/styles/v1/rodrivaldez5/cipa7p
 )
 
 
-var mymap = L.map('mapcanvas',{ layers: [satelite, calles]}).setView([-25.290800, -57.559465], 13);
+var mymap = L.map('mapcanvas',{ layers: [ calles]}).setView([-25.290800, -57.559465], 13);
 
 
 var baseMaps = {
@@ -154,6 +154,7 @@ function highlightFeature(e) {
 
 function zoomToFeature(e) {
     mymap.fitBounds(e.target.getBounds());
+   
 }
 
 // FUNCION PARA ACCION EN ON HOVER3
@@ -182,6 +183,8 @@ function highlightFeatureFull(e) {
 
 
 }
+
+
 
 
 
@@ -370,6 +373,9 @@ $.getJSON( "/static/js/pais.json", function( data ) {
         },
     moveToLocation: function(latlng, title, map) { // zoom al punto buscado
             //map.fitBounds( latlng.layer.getBounds() );
+            console.log(latlng.layer.feature.properties);
+            
+            info.updateFull(latlng.layer.feature.properties)
             var zoom = map.getBoundsZoom(latlng.layer.getBounds());
             map.setView(latlng, zoom); // access the zoom
         },
