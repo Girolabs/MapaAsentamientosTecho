@@ -364,3 +364,14 @@ table.DTFC_Cloned thead tr {
     text-align: center;
         min-height: 100px;
 }
+
+.cuadro {
+    background: #ddd !important;
+    padding: 12px;
+    color: #333;
+}
+
+
+.row.info-portada {
+    padding: 30px 0px;
+}
