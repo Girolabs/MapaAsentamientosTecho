@@ -238,11 +238,15 @@ function styleCiudades(feature) {
 
 /* Traigo los datos de la encuesta*/
 
-var datos_encuesta;
 
-$.getJSON( "http://"+dominio+"/asentamiento/", function( encuesta ) { 
-  datos_encuesta = encuesta;
-  console.log(encuesta);
+
+controlLoader = L.control.loader().addTo(mymap);
+
+
+controlLoader.show();
+
+
+
 
 
 /* Traigo los poligonos */
@@ -251,13 +255,11 @@ $.getJSON( "http://"+dominio+"/asentamiento/", function( encuesta ) {
 
 $.getJSON( "/static/py_ciudad.json", function( data ) {  
 
-ciudades = data;
-
-ciudadesAsuncion = $.grep(ciudades.features, function (element, index) {
+    ciudades = data;
+    ciudadesAsuncion = $.grep(ciudades.features, function (element, index) {
                     return element.properties.NAME_1 == 'Central';
                 });
-
- CapaCiudades = L.geoJson(ciudadesAsuncion,{
+    CapaCiudades = L.geoJson(ciudadesAsuncion,{
             style: styleCiudades ,
            // onEachFeature: onEachFeature,
            
@@ -265,155 +267,131 @@ ciudadesAsuncion = $.grep(ciudades.features, function (element, index) {
 
 
 
-$.getJSON( "/static/js/pais.json", function( data ) {
+    $.getJSON( "/static/js/pais.json", function( data ) {
 
-  console.log("geojson");
-  console.log(data);
+      console.log("geojson");
+      console.log(data);
+      asentamientos = data;
 
-  asentamientos = data;
+      /* Si tiene Hash */
+      hash = window.location.hash.substr(1);
 
-  /* Si tiene Hash */
+      if (hash) {
 
+          console.log(hash.split("-")[0]);
+          if (hash.split("-")[0]== "ciudad"){
 
-
-    hash = window.location.hash.substr(1);
-
-    if (hash) {
-
-
-        console.log(hash.split("-")[0]);
-      if (hash.split("-")[0]== "ciudad"){
-
-        console.log(hash.split("-")[0])
-        console.log(ciudadesAsuncion);
+          console.log(hash.split("-")[0])
+          console.log(ciudadesAsuncion);
           var returnedData = $.grep(ciudadesAsuncion, function (element, index) {
+                                   return element.properties.NAME_2.toLowerCase() == hash.split("-")[1].toLowerCase();
+                    });
 
+          ciudadFocus =  L.geoJson(returnedData);
+          console.log(returnedData);
+          mymap.fitBounds(ciudadFocus.getBounds());               
+
+          }
+          else if (hash.split("-")[0]== "asentamiento"){
+             //  console.log(asentamientos.features);
+          jjj =  jQuery.map(asentamientos.features, function(obj ) {
+                                                  //console.log(obj.properties.id_central + "-" + hash)
+                                                      if(obj.properties.id == hash.split("-")[1])
+                                                    //    console.log (obj);
+                                                         return obj; // or return obj.name, whatever.
+                                                      });
+                      //console.log(datoAsentamiento);
+          targetAsentamiento = jjj[0];
+          console.log(jjj)
+          asentamientoFocus = L.geoJson(targetAsentamiento);  
+          mymap.fitBounds(asentamientoFocus.getBounds());
+          }  // fin elseif      
+        
+      } /* Fin del HASH*/
+
+      /* Traigo los datos del RAP*/
+      $.getJSON( "http://"+dominio+"/asentamiento/", function( encuesta ) { 
+          controlLoader.hide(); /* Saco el loader*/
+          datos_encuesta = encuesta;
+          CapaAsentamientos = L.geoJson(data,{
+                    style: style ,
+                    onEachFeature: onEachFeature,
+                   
+                    }).addTo(mymap);
+          CapaAsentamientosBase = CapaAsentamientos;
+          var fuse = new Fuse(data.features, {
+                keys: ['properties.nombre', ]
+            });
+
+          /* Search un MultiLayers */   
+
+          var poiLayers = L.layerGroup([
+              L.geoJson(data,{ 
+                  style: style ,
+                  onEachFeature: onEachFeature,
                  
+                  }),
+           
+          ])        
+
+
+        /* Configuration of Search box*/
+          new L.Control.Search({layer: CapaAsentamientos,
+            autoType: true,
+            propertyName: 'nombre', // nombre de la propiedad a buscar
+            filterData: function(text, records) { // filtro fuzzy
+                    var jsons = fuse.search(text),
+                        ret = {}, key;
                     
+                    for(var i in jsons) {
+                        key = jsons[i].properties.nombre;
+                        ret[ key ]= records[key];
+                    }
+
+                    console.log(jsons,ret);
+                    return ret;
+                },
+            moveToLocation: function(latlng, title, map) { // zoom al punto buscado
+                    //map.fitBounds( latlng.layer.getBounds() );
+                    console.log(latlng.layer.feature.properties);
+                    
+                    info.updateFull(latlng.layer.feature.properties)
+                    var zoom = map.getBoundsZoom(latlng.layer.getBounds());
+                    map.setView(latlng, zoom); // access the zoom
+                },
+            buildTip: function(text, val) { // tag alado del nombre
+                    console.log(val.layer.feature.properties);
+                    var type = val.layer.feature.properties.nombre_distrito;
+                    return '<a href="#" class="'+type+'">'+text+' - <b>'+type+'</b></a>';
+                }
 
 
-                  
-                    return element.properties.NAME_2.toLowerCase() == hash.split("-")[1].toLowerCase();
-                });
+          }).addTo(mymap);
+        /* Fin de Search */
 
-           ciudadFocus =  L.geoJson(returnedData);
-           console.log(returnedData);
-             mymap.fitBounds(ciudadFocus.getBounds());
-           
-
-      }
-      else if (hash.split("-")[0]== "asentamiento"){
-
-         //  console.log(asentamientos.features);
-      jjj =  jQuery.map(asentamientos.features, function(obj ) {
-                                              //console.log(obj.properties.id_central + "-" + hash)
-                                                  if(obj.properties.id == hash.split("-")[1])
-                                                //    console.log (obj);
-                                                     return obj; // or return obj.name, whatever.
-                                                  });
-                  //console.log(datoAsentamiento);
-      targetAsentamiento = jjj[0];
-      console.log(jjj)
-      asentamientoFocus = L.geoJson(targetAsentamiento);
-      
-
-      mymap.fitBounds(asentamientoFocus.getBounds());
+          info.addTo(mymap);
+         // console.log(targetAsentamiento.properties);
+          //info.updateFull(targetAsentamiento.properties);
+              
 
 
-      }
+        }); /* Fin Get RAP*/
 
-     
-    
-} /* Fin del HASH*/
+    })/* fIN Get CIUDADES*/
 
-
-  CapaAsentamientos = L.geoJson(data,{
-            style: style ,
-            onEachFeature: onEachFeature,
-           
-            }).addTo(mymap);
-
-  var fuse = new Fuse(data.features, {
-        keys: ['properties.nombre', ]
-    });
+}) /* Fin de Get POLIGONOS RAP*/
 
 
-
-
-    /* Search un MultiLayers */
-
-   
-
-    var poiLayers = L.layerGroup([
-        L.geoJson(data,{ 
-            style: style ,
-            onEachFeature: onEachFeature,
-           
-            }),
-     
-    ])
-   
-
-
-/* Configuration of Search box*/
-  new L.Control.Search({layer: CapaAsentamientos,
-    autoType: true,
-    propertyName: 'nombre', // nombre de la propiedad a buscar
-    filterData: function(text, records) { // filtro fuzzy
-            var jsons = fuse.search(text),
-                ret = {}, key;
-            
-            for(var i in jsons) {
-                key = jsons[i].properties.nombre;
-                ret[ key ]= records[key];
-            }
-
-            console.log(jsons,ret);
-            return ret;
-        },
-    moveToLocation: function(latlng, title, map) { // zoom al punto buscado
-            //map.fitBounds( latlng.layer.getBounds() );
-            console.log(latlng.layer.feature.properties);
-            
-            info.updateFull(latlng.layer.feature.properties)
-            var zoom = map.getBoundsZoom(latlng.layer.getBounds());
-            map.setView(latlng, zoom); // access the zoom
-        },
-    buildTip: function(text, val) { // tag alado del nombre
-            console.log(val.layer.feature.properties);
-            var type = val.layer.feature.properties.nombre_distrito;
-            return '<a href="#" class="'+type+'">'+text+' - <b>'+type+'</b></a>';
-        }
-
-
-  }).addTo(mymap);
-/* Fin de Search */
-
-      info.addTo(mymap);
-      console.log(targetAsentamiento.properties);
-       info.updateFull(targetAsentamiento.properties);
-      
-
-
-});
-
-}) /* Get Departamentos*/
-
-}) /* Get Asentamientos*/
-
-/* Fin de Get de Asentamientos */
 
 
 /* SideBar IZquierda */
 
-var sidebar = L.control.sidebar('sidebar', {
-   
+var sidebar = L.control.sidebar('sidebar', {   
     position: 'left'
 }).addTo(mymap);
 
 
 /* LIMPIAR TODO EL MAPA */
-
 $('#limpiar').on('click',function(){
   CapaAsentamientos.clearLayers()
 })
@@ -426,7 +404,7 @@ function Agua (){
     tipo = $('input[name=agua]:checked').val()
     console.log(tipo);
     if (tipo){
-     Filtrado = CapaAsentamientos.toGeoJSON();
+    Filtrado = CapaAsentamientos.toGeoJSON();
     CapaAsentamientos.clearLayers();
     CapaAsentamientos = L.geoJson(Filtrado,{
             style: style ,
@@ -465,10 +443,7 @@ function Agua (){
 };
 
 
-function Energia(){
-
-  
-  
+function Energia(){ 
 
   tipo = $('input[name=energia]:checked').val();
   console.log(tipo);
@@ -517,10 +492,11 @@ function FiltroCiudad() {
   console.log(ciudad_selecionada);
 
   if (ciudad_selecionada!=''){
-    console.log("no vacio")
- Filtrado = CapaAsentamientos.toGeoJSON();
+  console.log("Tiene filtro de ciudad")
+  console.log(CapaCiudades);
+ 
   CapaAsentamientos.clearLayers();
-  CapaAsentamientos = L.geoJson(Filtrado,{
+  CapaAsentamientos = L.geoJson(asentamientos,{
             style: style ,
             onEachFeature: onEachFeature,
 
@@ -547,7 +523,7 @@ function FiltroCiudad() {
 
   }
   else{
-
+      console.log("Sin filtro Ciudades")
       CapaAsentamientos.clearLayers();
       CapaAsentamientos = L.geoJson(asentamientos,{
             style: style ,
@@ -563,33 +539,26 @@ function FiltroCiudad() {
 }
 
 
+/* lISTENERS DE EVENTOS */
+
 $( "#sel1" ).change(function(){
    FiltroCiudad();   
-   Agua();
-    Energia();
+  Agua();
+   Energia();
 });
-
-
 
 $( ".agua" ).click(function(){
   //alert(this.value);
-      FiltroCiudad();   
+    FiltroCiudad();   
     Agua();
     Energia();
-
- 
 })
 
 $( ".energia" ).click(function(){
 //alert(this.value);
- 
  FiltroCiudad();
  Agua(); 
  Energia();
-
-
-
-
 })
 
 

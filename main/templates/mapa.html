@@ -10,6 +10,8 @@
 
    
          <link rel="stylesheet" href="{% static 'leaflet-search/src/leaflet-search.css' %}">
+
+                <link rel="stylesheet" href="{% static 'js/leaflet-loader.css' %}">
     <!-- Fuzzy search -->
      <script src="//cdnjs.cloudflare.com/ajax/libs/fuse.js/1.2.2/fuse.min.js"></script>
       <!-- Sidebar Map -->
@@ -203,7 +205,7 @@ footer {
 
 
      {% block footer%}
-            <script src="{% static 'js/heartcode-canvasloader-min.js' %}"></script>
+            <script src="{% static 'js/leaflet-loader.js' %}"></script>
             <script type="text/javascript">dominio = "{{ config.dominio }}";</script>
         <script src="{% static 'js/main.js' %}"></script>
       {% endblock %}
