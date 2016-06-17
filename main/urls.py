@@ -17,6 +17,8 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^mapa/$', views.mapa, name='mapa'),
     url(r'^datos/$', views.datos, name='datos'),
+    url(r'^metodologia/$', views.metodologia, name='metodologia'),
+     url(r'^graficos/$', views.graficos, name='graficos'),
      #url(r'^asentamiento/$', views.AsentamientoViewSet.as_view()),
 
      url(r'^', include(router.urls)),

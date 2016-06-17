@@ -370,8 +370,7 @@ $.getJSON( "/static/py_ciudad.json", function( data ) {
         /* Fin de Search */
 
           info.addTo(mymap);
-         // console.log(targetAsentamiento.properties);
-          //info.updateFull(targetAsentamiento.properties);
+       
               
 
 

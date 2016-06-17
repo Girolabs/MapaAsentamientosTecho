@@ -31,6 +31,15 @@ def mapa(request):
     return render_to_response('mapa.html', context)
 
 
+
+def metodologia(request):
+    context = {'config': config}
+    return render_to_response('metodologia.html', context)
+def graficos(request):
+    context = {'config': config}
+    return render_to_response('graficos.html', context)
+
+
 def datos(request):
     context = {'config': config}
     return render_to_response('datos.html', context)
