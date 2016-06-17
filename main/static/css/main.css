@@ -289,6 +289,14 @@ table.DTFC_Cloned thead tr {
     top: 40px;
 }
 
+.sidebar-left~.sidebar-map {
+     margin-left: 0px; 
+}
+
+#sidebar {
+    left: 12px;
+}
+
 .sidebar-tabs {
     background: transparent;
 }
@@ -322,9 +330,11 @@ table.DTFC_Cloned thead tr {
 }
 
 .cerrar-info {
-        position: absolute;
-    right: 5px;
+           position: fixed;
+    right: 20px;
+    top: 65px;
     font-size: 12px;
+        color: #D32F2F;
 }
 
 
