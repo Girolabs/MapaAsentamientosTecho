@@ -28,7 +28,7 @@ class Asentamiento (models.Model):
 	numero_aprox_viviendas = models.CharField(max_length = 1000, blank=True)
 	numero_aprox_viviendas_precarias = models.CharField(max_length = 1000, blank=True)
 	numero_aprox_viviendas_precarias_otro = models.CharField(max_length = 1000, blank=True)
-	numero_familias = models.CharField(max_length = 1000, blank=True)
+	numero_familias = models.BigIntegerField(blank=True)
 	multiples_familias = models.CharField(max_length = 1000, blank=True)
 	tipo_propiedad = models.CharField(max_length = 1000, blank=True)
 	tipo_propiedad_fiscal = models.CharField(max_length = 1000, blank=True)
