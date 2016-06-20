@@ -16,11 +16,22 @@ import json
 from django.core import serializers
 from constance import config
 
+class DecimalEncoder(json.JSONEncoder):
+    def _iterencode(self, o, markers=None):
+        if isinstance(o, decimal.Decimal):
+            # wanted a simple yield str(o) in the next line,
+            # but that would mean a yield on the line with super(...),
+            # which wouldn't work (see my comment below), so...
+            return (str(o) for o in [o])
+        return super(DecimalEncoder, self)._iterencode(o, markers)
+
+
+
 def index(request):
     
     ciudades = Asentamiento.objects.values("ciudad").annotate(total=Count('ciudad'),familias=Sum('numero_familias'))
     #asentamiento = serializers.serialize('json',Asentamiento.objects.all())
-    asentamiento = json.dumps(list(ciudades))
+    asentamiento = json.dumps(list(ciudades), cls=DecimalEncoder)
     context = {'asentamiento':asentamiento, 'config': config}
     return render_to_response('index.html',context)
 
