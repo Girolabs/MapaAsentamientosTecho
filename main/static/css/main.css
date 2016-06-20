@@ -170,6 +170,18 @@ a.btn.btn-white:hover {
     height: 500px;
 }
 
+#mapcanvas2  .info.leaflet-control h4 {
+    color: #DA9636;
+}
+
+#mapcanvas2  .info.leaflet-control {
+    color: #575756;
+    background: #CCE1E4;
+    padding: 10px;
+}
+
+
+
 #mapcanvas2.leaflet-container {
     background: transparent;
     
@@ -186,6 +198,12 @@ a.btn.btn-white:hover {
 #mapcanvas2 .leaflet-popup-content-wrapper {
     border-radius: 0px;
     padding: 20px;
+}
+
+#mapcanvas2 span.numero-grande {
+    font-family: Novecento;
+    font-weight: 900;
+    font-size: 20px;
 }
 
 .datos{
@@ -206,13 +224,14 @@ a.btn.btn-white:hover {
 }
 
 #mapcanvas  .info.leaflet-control {
-    background: rgba(255, 255, 255, 0.58);
+        background: rgba(0, 146, 221, 0.57);
       padding: 20px;
     margin-right: 0px;
     width: 400px;
     top: -20px;
     max-height: 500px;
     overflow-y: scroll;
+    color: white;
 }
 
 
@@ -264,7 +283,7 @@ h1.center {
 
 
 .dataTables_wrapper thead {
-    background: #DA9636;
+    background: #0092DD;
     color: white;
 }
 
@@ -357,16 +376,24 @@ table.DTFC_Cloned thead tr {
     font-size: 20px;
 }
 
+.info.leaflet-control p {
+
+    font-family: Novecento;
+    font-weight: 900;
+    font-size: 14px;
+    color: #575756;
+}
 
 .info.leaflet-control b {
     font-family: Novecento;
-    font-size: 10px;
+    font-size: 14px;
 }
 
 .info-icon {
     margin-right: 10px;
     text-align: center;
     display: block;
+    color: #575756;
 }
 
 
@@ -435,4 +462,15 @@ ul.nav.navbar-nav.navbar-right li.active a{
    animation-duration: 1.5s;
   animation-delay: 0.1s;
 
+}
+
+
+thead th {
+    font-family: Novecento;
+    font-size: 10px;
+}
+
+
+#tabla-asentamientos_wrapper td {
+    text-transform: capitalize;
 }

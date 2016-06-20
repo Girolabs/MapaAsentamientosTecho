@@ -10,7 +10,7 @@ from main.models import Asentamiento
 from rest_framework import filters
 from rest_framework.views import APIView
 from rest_framework import generics
-from django.db.models import Count
+from django.db.models import Count, Sum
 
 import json
 from django.core import serializers
@@ -18,7 +18,7 @@ from constance import config
 
 def index(request):
     
-    ciudades = Asentamiento.objects.values("ciudad").annotate(total=Count('ciudad'))
+    ciudades = Asentamiento.objects.values("ciudad").annotate(total=Count('ciudad'),familias=Sum('numero_familias'))
     #asentamiento = serializers.serialize('json',Asentamiento.objects.all())
     asentamiento = json.dumps(list(ciudades))
     context = {'asentamiento':asentamiento, 'config': config}

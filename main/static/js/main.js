@@ -9,7 +9,7 @@ var satelite = L.tileLayer('https://api.mapbox.com/styles/v1/rodrivaldez5/cipa7p
 )
 
 
-var mymap = L.map('mapcanvas',{ layers: [ calles]}).setView([-25.290800, -57.559465], 13);
+var mymap = L.map('mapcanvas',{ layers: [ calles]}).setView([-25.290800, -57.559465], 11);
 
 
 var baseMaps = {
@@ -84,7 +84,7 @@ info.updateFull = function (props) {
 
     '<div class="col-md-12"><div class="row"><a ><i class="fa fa-times cerrar-info" aria-hidden="true"></i></a>'  +
     '<h4> '+  props.nombre+ '-' + info_asentamiento[0].ciudad + '</h4>' + 
-    '<div class="col-md-6"><b><i class="flaticon-tiles info-icon"></i> Superficie</b><p>'     + info_asentamiento[0].superficie + ' metros cuadrados</p></div>' +   
+    '<div class="col-md-6"><b><i class="flaticon-tiles info-icon"></i> Superficie</b><p>'     + info_asentamiento[0].superficie + ' metros <sup>2</sup></p></div>' +   
     '<div class="col-md-6"><b><i class="flaticon-user-black-close-up-shape info-icon"></i> Poblador mas antiguo</b><p>'     + info_asentamiento[0].poblador_mas_antiguo + '</p></div>' +  
         '<div class="col-md-6"><b><i class="flaticon-multiple-users-silhouette info-icon"></i>Cantidad de Familias</b><p>'     + info_asentamiento[0].numero_familias + '</p></div>' +
      '<div class="col-md-6"><b><i class="flaticon-neighborhood info-icon "></i>Cantidad aprox. de viviendas</b><p>'     + info_asentamiento[0].numero_aprox_viviendas + '</p></div>' +

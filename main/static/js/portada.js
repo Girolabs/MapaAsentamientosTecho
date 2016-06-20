@@ -60,7 +60,7 @@ info.update = function (props) {
 
 if (!datos_asentamiento){
 this._div.innerHTML =   (props ?
-        '<h4>'+ props.NAME_2+'</h4>' +    '<b>Cantidad de Asentamientos</b><br />' + 'sin registros de'+ ' asentamientos'
+        '<h4>'+ props.NAME_2+'</h4>' +    '<b>Ciudad no relevada</b><br />' + ''+ ''
         : '<h4>'+ "Mapa"+'</h4>' + 'Posisionate sobre un departamento');
 
         
@@ -68,7 +68,7 @@ this._div.innerHTML =   (props ?
 else {
 
     this._div.innerHTML =   (props ?
-        '<h4>'+ props.NAME_2+'</h4>' +    '<b>Cantidad de Asentamientos</b><br />' + datos_asentamiento.total + ' asentamientos'
+        '<h4>'+ props.NAME_2+'</h4>' +    '<span class="numero-grande">' + datos_asentamiento.total + '</span> Asentamientos relevados </br> <span class="numero-grande">' +  datos_asentamiento.familias + '</span> Familias </br>'  
         : '<h4>'+ "Mapa"+'</h4>' + 'Posisionate sobre un departamento');
 
 }
@@ -111,7 +111,7 @@ function resetHighlight(e) {
     //geojson.resetStyle(e.target);
      layer.setStyle({
         weight: 1,
-        color: '#888',
+        color: 'white',
         dashArray: '',
         fillOpacity: 1
     });
@@ -170,7 +170,7 @@ function getColor(d) {
     console.log(datos_asentamiento);
     if (datos_asentamiento){
         console.log("hay" + datos_asentamiento.ciudad);
-        return '#ED7A0D';
+        return '#DD4395'; // Color de las ciudades marcadas
     }
 else{
     return d == "Asunción" ? '#ED7A0D' :
@@ -197,7 +197,7 @@ function styleCiudad(feature) {
         fillColor: getColor(feature.properties.NAME_2),
         weight: 1,
         opacity: 1,
-        color: '#888',
+        color: 'white',
        // dashArray: '3',
         fillOpacity: 1
     };
@@ -209,7 +209,7 @@ function styleCiudad(feature) {
 $.getJSON( "/static/py.json", function( data ) {  
         console.log(data.features);
         var EstiloDepartamento = {
-            "color": "#888",
+            "color": "white",
             "weight": 1,
            // "opacity": 0.65
             fillColor: 'transparent',

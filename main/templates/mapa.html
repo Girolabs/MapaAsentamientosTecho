@@ -58,24 +58,15 @@ footer {
 	                    <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
 	                </h1>
 
-	                <p>A responsive sidebar for mapping libraries like <a href="http://leafletjs.com/">Leaflet</a> or <a href="http://openlayers.org/">OpenLayers</a>.</p>
-
-	                <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-
-	                <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-
-	                <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-
-	                <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
 	            </div>
 
-	            <div class="sidebar-pane" id="profile">
+	           <!-- <div class="sidebar-pane" id="profile">
 	                <h1 class="sidebar-header">Profile<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
 	            </div>
 
 	            <div class="sidebar-pane" id="messages">
 	                <h1 class="sidebar-header">Messages<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-	            </div>
+	            </div> -->
 
 	            <div class="sidebar-pane" id="settings">
 
@@ -102,28 +93,34 @@ footer {
 				      <h5 class="col-md-12">Tipo de Conexion de Agua</h5>
 
 				      <div class="col-md-12">
+				      	<div class="radio radio-primary">
+				          <label>
+				            <input class="agua" type="radio" name="agua"   value="" >
+				           Todos
+				          </label>
+				        </div>
 				        <div class="radio radio-primary">
 				          <label>
 				            <input class="agua" type="radio" name="agua"   value="conexion irregular" >
-				            conexion irregular
+				            conexión irregular
 				          </label>
 				        </div>
 				        <div class="radio radio-primary">
 				          <label>
 				            <input class="agua" type="radio" name="agua"  value="conexión regular">
-				            conexion regular
+				            conexión regular
 				          </label>
 				        </div>
 				         <div class="radio radio-primary">
 				          <label>
 				            <input class="agua" type="radio" name="agua"  value="pozo comunal">
-				            pozo comunal
+				            Pozo comunal
 				          </label>
 				        </div>
 				         <div class="radio radio-primary">
 				          <label>
 				            <input class="agua" type="radio" name="agua"  value="pozo privado">
-				            pozo comunal
+				            Pozo comunal
 				          </label>
 				        </div>
 				      </div>
@@ -134,10 +131,16 @@ footer {
 				      <h5 class="col-md-12">Tipo de Conexion Energía Electrica</h5>
 
 				      <div class="col-md-12">
+				      	<div class="radio radio-primary">
+				          <label>
+				            <input class="energia" type="radio" name="energia" id="irregular-energia" value="" >
+				            Todos
+				          </label>
+				        </div>
 				        <div class="radio radio-primary">
 				          <label>
 				            <input class="energia" type="radio" name="energia" id="irregular-energia" value="irregular" >
-				            conexion irregular
+				            Conexión irregular
 				          </label>
 				        </div>
 				        <div class="radio radio-primary">
