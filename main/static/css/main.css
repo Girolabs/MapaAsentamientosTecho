@@ -346,6 +346,12 @@ table.DTFC_Cloned thead tr {
 .sidebar-left.collapsed~.sidebar-map .leaflet-left {
     left: 5px;
     top: 50px;
+
+
+}   
+
+div#sidebar.collapsed {
+    height: 50px;
 }
 
 
