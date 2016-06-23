@@ -9,7 +9,7 @@ var satelite = L.tileLayer('https://api.mapbox.com/styles/v1/rodrivaldez5/cipa7p
 )
 
 
-var mymap = L.map('mapcanvas',{ layers: [ calles]}).setView([-25.290800, -57.559465], 11);
+var mymap = L.map('mapcanvas',{ scrollWheelZoom:false,layers: [ calles]}).setView([-25.290800, -57.559465], 11);
 
 
 var baseMaps = {
@@ -29,7 +29,7 @@ info.onAdd = function (map) {
     this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
     this._divFull = L.DomUtil.create('div', 'infoFull');
    // this.update();
-    this._div.innerHTML =  '<h4>'+ "Mapa"+'</h4>' + 'Posicionate sobre un asentamiento';
+    this._div.innerHTML =  '';
 
     return this._div;
 };
@@ -95,8 +95,8 @@ info.updateFull = function (props) {
     '<div class="col-md-6"><b><i class="fa fa-bolt info-icon" aria-hidden="true" ></i>Conexion Electrica</b><p>'     + info_asentamiento[0].energia_tipo_provision + ' </p></div>' +
     '<div class="col-md-6"><b><i class="flaticon-bathroom info-icon" aria-hidden="true" ></i>Tipo de Desague</b><p>'     + info_asentamiento[0].excretas + ' </p></div>' +
     '<div class="col-md-6"><b><i class="flaticon-lamp-post info-icon" aria-hidden="true"></i>Alumbrado Publico</b><p>'     + info_asentamiento[0].alumbrado_publico + ' <br>' +  info_asentamiento[0].alumbrado_publico_otro+ ' </p></div>' +
-    '<div class="col-md-6"><b><i class="flaticon-signs info-icon" aria-hidden="true" ></i>Combustible para cocinar</b><p>'     + info_asentamiento[0].cocina_metodo + ' <br>' +info_asentamiento[0].cocina_metodo_otro + ' </p></div>' +
-    '<div class="col-md-6"><b><i class="flaticon-garbage info-icon" aria-hidden="true"></i>Recolección de basura</b><p>'     + info_asentamiento[0].problema_eliminacion_basura + '<br> ' +info_asentamiento[0].eliminacion_basura_tipo + ' </p></div>' +
+   /* '<div class="col-md-6"><b><i class="flaticon-signs info-icon" aria-hidden="true" ></i>Combustible para cocinar</b><p>'     + info_asentamiento[0].cocina_metodo + ' <br>' +info_asentamiento[0].cocina_metodo_otro + ' </p></div>' +
+    '<div class="col-md-6"><b><i class="flaticon-garbage info-icon" aria-hidden="true"></i>Recolección de basura</b><p>'     + info_asentamiento[0].problema_eliminacion_basura + '<br> ' +info_asentamiento[0].eliminacion_basura_tipo + ' </p></div>' +*/
     '<div class="col-md-6"><b><i class="flaticon-people info-icon" aria-hidden="true" ></i>Comisión Vecinal</b><p>'     + info_asentamiento[0].comision_vecinal + ' </p></div> </div></div>'
 
 
@@ -388,6 +388,8 @@ $.getJSON( "/static/py_ciudad.json", function( data ) {
 var sidebar = L.control.sidebar('sidebar', {   
     position: 'left'
 }).addTo(mymap);
+
+
 
 
 /* LIMPIAR TODO EL MAPA */

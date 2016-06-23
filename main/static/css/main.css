@@ -227,7 +227,7 @@ a.btn.btn-white:hover {
         background: rgba(0, 146, 221, 0.57);
       padding: 20px;
     margin-right: 0px;
-    width: 400px;
+    width: 40%;
     top: -20px;
     max-height: 500px;
     overflow-y: scroll;
@@ -303,43 +303,49 @@ table.DTFC_Cloned thead tr {
     background: transparent;
 }
 
-.sidebar-left.collapsed~.sidebar-map .leaflet-left {
+#sidebar .sidebar-left.collapsed~.sidebar-map .leaflet-left {
     left: 5px;
     top: 40px;
 }
 
-.sidebar-left~.sidebar-map {
+#sidebar .sidebar-left~.sidebar-map {
      margin-left: 0px; 
 }
 
 #sidebar {
     left: 12px;
+    border: transparent;
 }
 
-.sidebar-tabs {
+#sidebar .sidebar-tabs {
     background: transparent;
 }
 
-.sidebar.leaflet-touch {
+#sidebar .sidebar.leaflet-touch {
     border: 2px solid rgba(0,0,0,0);
         z-index: 1;
     border-radius: 0px;
 }
 
-.sidebar-tabs>li, .sidebar-tabs>ul>li {
+#sidebar .sidebar-tabs>li, .sidebar-tabs>ul>li {
       width: 90%;
     border: solid rgb(177, 177, 177) 2px;
     background: white;
     border-radius: 5px;
 }
 
-.sidebar-left .sidebar-close {
+#sidebar .sidebar-left .sidebar-close {
     top: 10px;
 }
 
-.sidebar-left .sidebar-content {
+#sidebar .sidebar-left .sidebar-content {
   /*  left: 0px !important;*/
     /* right: 0; */
+}
+
+.sidebar-left.collapsed~.sidebar-map .leaflet-left {
+    left: 5px;
+    top: 50px;
 }
 
 
@@ -473,4 +479,9 @@ thead th {
 
 #tabla-asentamientos_wrapper td {
     text-transform: capitalize;
+}
+
+
+p {
+    font-size: 16px;
 }

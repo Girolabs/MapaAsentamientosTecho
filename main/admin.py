@@ -18,6 +18,8 @@ class AsentamientoResource(resources.ModelResource):
 
 
 class AsentamientoAdmin(ImportExportModelAdmin):
-    pass
+	list_display = ('identificador','asentamiento', 'ciudad', 'numero_familias','numero_aprox_viviendas')
+	search_fields = ['asentamiento', ]
+	pass
 
 admin.site.register(Asentamiento,AsentamientoAdmin)
