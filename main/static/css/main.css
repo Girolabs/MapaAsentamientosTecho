@@ -170,6 +170,11 @@ a.btn.btn-white:hover {
     height: 500px;
 }
 
+#mapcanvas2 .leaflet-right {
+    right: 2px;
+    width: 179px;
+}
+
 #mapcanvas2  .info.leaflet-control h4 {
     color: #DA9636;
 }
@@ -491,3 +496,27 @@ thead th {
 p {
     font-size: 16px;
 }
+
+button.navbar-toggle.collapsed {
+    color: #0294DF;
+}
+
+@media (max-width: 600px) {
+
+.leaflet-control-container .leaflet-top.leaflet-right {
+    width: 80%;
+}
+
+#mapcanvas .info.leaflet-control {
+    width: 100%;
+}
+
+.sidebar-left~.sidebar-map {
+    margin-left: 0px;
+}
+
+#mapcanvas {
+    margin-top: 53px !important
+
+    }
+  }

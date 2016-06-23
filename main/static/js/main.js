@@ -9,7 +9,7 @@ var satelite = L.tileLayer('https://api.mapbox.com/styles/v1/rodrivaldez5/cipa7p
 )
 
 
-var mymap = L.map('mapcanvas',{ scrollWheelZoom:false,layers: [ calles]}).setView([-25.290800, -57.559465], 11);
+var mymap = L.map('mapcanvas',{ layers: [ calles]}).setView([-25.290800, -57.559465], 11);
 
 
 var baseMaps = {
@@ -29,7 +29,7 @@ info.onAdd = function (map) {
     this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
     this._divFull = L.DomUtil.create('div', 'infoFull');
    // this.update();
-    this._div.innerHTML =  '';
+    this._div.innerHTML =  '<h4>'+ "Mapa"+'</h4>' + 'Posicionate sobre un asentamiento para ver los datos';
 
     return this._div;
 };
@@ -111,7 +111,7 @@ info.updateFull = function (props) {
   }
   else{
 
-     this._div.innerHTML =  '<h4>'+ "Mapa"+'</h4>' + 'Posicionate sobre un departamento';
+     this._div.innerHTML =  '<h4>'+ "Mapa"+'</h4>' + 'Posicionate sobre un asentamiento para ver los datos';
 
 
 
@@ -370,6 +370,13 @@ $.getJSON( "/static/py_ciudad.json", function( data ) {
         /* Fin de Search */
 
           info.addTo(mymap);
+
+          /* Deshabilito funcion de scroll para que el cuadro de info */
+
+          var container = document.getElementsByClassName("info")[0];
+           L.DomEvent.disableClickPropagation(container)
+          L.DomEvent.disableScrollPropagation(container);
+
        
               
 
@@ -563,3 +570,8 @@ $( ".energia" ).click(function(){
 })
 
 
+
+
+
+
+  

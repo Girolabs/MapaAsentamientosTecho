@@ -24,6 +24,9 @@
         <thead>
             <tr>
                 <th>Asentamiento</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
+                 <th>Ver en Mapa</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
+
+
                 <th>Ciudad </br> <input class="form-control input-sm" type="text" placeholder="Buscar Ciudad" /></th>
                 
                 <th>Posee loteamiento</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
@@ -38,8 +41,7 @@
                 <th>número de familias</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
                     <th>Provision de Agua</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
                <th>Energía</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
-                 <th>Energía</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
-
+                
 
             </tr>
            
@@ -111,6 +113,15 @@ dominio = "{{ config.dominio }}" ;
          "pageLength": 50,
         "columns": [
                      { data: 'asentamiento'},
+                     {
+                        "title": "Mapa",
+                        "render": function (data, type, row, meta) {
+                            return '<a href="/mapa/#asentamiento-' + data + '">' + "Ven En Mapa" + '</a>';
+                        },
+                        data:'identificador',
+
+
+                    },
                     {  data: 'ciudad' },
                    
                     { data: 'esta_loteada'},
@@ -125,15 +136,7 @@ dominio = "{{ config.dominio }}" ;
                     { data: 'numero_familias'},
                     { data: 'agua_tipo_provision'},
                     { data: 'energia_tipo_provision'},
-                    {
-                        "title": "Mapa",
-                        "render": function (data, type, row, meta) {
-                            return '<a href="/mapa/#asentamiento-' + data + '">' + "Ven En Mapa" + '</a>';
-                        },
-                        data:'identificador',
-
-
-                    }
+                    
                                         
                     
 

@@ -10,6 +10,7 @@ var info = L.control();
 info.onAdd = function (map) {
     this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
     this.update();
+     this._div.innerHTML =  '<h4>'+ "Mapa"+'</h4>' + 'Posicionate sobre un asentamiento para ver los datos';
     return this._div;
 };
 
@@ -68,7 +69,7 @@ this._div.innerHTML =   (props ?
 else {
 
     this._div.innerHTML =   (props ?
-        '<h4>'+ props.NAME_2+'</h4>' +    '<span class="numero-grande">' + datos_asentamiento.total + '</span> Asentamientos relevados </br> <span class="numero-grande">' +  datos_asentamiento.familias + '</span> Familias </br>'  
+        '<h4>'+ props.NAME_2+'</h4>' +    '<span class="numero-grande">' + datos_asentamiento.total + '</span> Asentamientos</br> <span class="numero-grande">' +  datos_asentamiento.familias + '</span> Familias </br>'  
         : '<h4>'+ "Mapa"+'</h4>' + 'Posisionate sobre un departamento');
 
 }
