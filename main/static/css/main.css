@@ -501,6 +501,25 @@ button.navbar-toggle.collapsed {
     color: #0294DF;
 }
 
+.redes .fa {
+    margin: 0px 6px;
+    font-size: 23px;
+    /* height: 30px; */
+    /* width: 30px; */
+    /* border-radius: 100%; */
+    /* border: solid 1px; */
+    overflow: hidden;
+    /* padding: 8px; */
+}
+
+a.facebook {
+    color: white;
+}
+
+a.twitter {
+    color: white;  
+}
+
 @media (max-width: 600px) {
 
 .leaflet-control-container .leaflet-top.leaflet-right {
