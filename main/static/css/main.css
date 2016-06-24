@@ -520,6 +520,18 @@ a.twitter {
     color: white;  
 }
 
+.sidebar-left~.sidebar-map {
+    margin-left: 0px;
+}
+
+@media (max-width: 1080px) { 
+#mapcanvas .info.leaflet-control {
+    width: 100%;
+}
+#mapcanvas {
+    margin-top: 53px !important;}
+
+}
 @media (max-width: 600px) {
 
 .leaflet-control-container .leaflet-top.leaflet-right {
@@ -539,3 +551,5 @@ a.twitter {
 
     }
   }
+
+
