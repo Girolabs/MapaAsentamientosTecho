@@ -366,11 +366,11 @@ div#sidebar.collapsed {
 }
 
 .cerrar-info {
-           position: fixed;
-    right: 20px;
-    top: 65px;
+    position: fixed;
+    right: 10px;
+    top: 52px;
     font-size: 12px;
-        color: #D32F2F;
+    color: #D32F2F;
 }
 
 
@@ -390,7 +390,8 @@ div#sidebar.collapsed {
     width: 30px;
 }
 .info.leaflet-control .fa {
-    font-size: 20px;
+       font-size: 26px;
+    padding: 10px;
 }
 
 .info.leaflet-control p {
