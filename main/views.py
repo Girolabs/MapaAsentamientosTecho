@@ -29,7 +29,7 @@ class DecimalEncoder(json.JSONEncoder):
 
 def index(request):
     
-    ciudades = Asentamiento.objects.values("ciudad").annotate(total=Count('ciudad'),familias=Sum('numero_familias'), numero_aprox_viviendas_precarias=Sum('numero_aprox_viviendas_precarias'))
+    ciudades = Asentamiento.objects.values("ciudad").annotate(total=Count('ciudad'), numero_aprox_viviendas_precarias=Sum('numero_aprox_viviendas_precarias'))
     #asentamiento = serializers.serialize('json',Asentamiento.objects.all())
     asentamiento = json.dumps(list(ciudades), cls=DecimalEncoder)
     context = {'asentamiento':asentamiento, 'config': config}
