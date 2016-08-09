@@ -143,7 +143,7 @@ class Asentamiento (models.Model):
 	aspectos_positivos = models.CharField(max_length = 1000, blank=True)
 	observaciones_grales = models.CharField(max_length = 1000, blank=True)
 	datos_adjuntos = models.CharField(max_length = 1000, blank=True)
-
+	asentamiento_intervenido_techo = models.CharField(max_length = 1000, blank=True, default='no')
 
 	
 	def __unicode__(self):

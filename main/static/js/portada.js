@@ -54,6 +54,7 @@ info.update = function (props) {
     
 
     datos_asentamiento = getObjects(asentamientos, 'ciudad',str)[0];
+    console.log(datos_asentamiento);
 
 
    
@@ -69,7 +70,7 @@ this._div.innerHTML =   (props ?
 else {
 
     this._div.innerHTML =   (props ?
-        '<h4>'+ props.NAME_2+'</h4>' +    '<span class="numero-grande">' + datos_asentamiento.total + '</span> Asentamientos</br> <span class="numero-grande">' +  datos_asentamiento.familias + '</span> Familias </br>'  
+        '<h4>'+ props.NAME_2+'</h4>' +    '<span class="numero-grande">' + datos_asentamiento.total + '</span> Asentamientos</br>  <span class="numero-grande">' +  datos_asentamiento.numero_aprox_viviendas_precarias + '</span> viviendas precarias </br>'  
         : '<h4>'+ "Mapa"+'</h4>' + 'Posisionate sobre un departamento');
 
 }

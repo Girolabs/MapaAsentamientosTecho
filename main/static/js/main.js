@@ -77,28 +77,29 @@ info.updateFull = function (props) {
   if (props) {
     console.log(props);
     
-      info_asentamiento = getObjects(datos_encuesta,'identificador',String(props.id));
+    info_asentamiento = getObjects(datos_encuesta,'identificador',String(props.id));
     console.log(info_asentamiento[0]);
 
     this._div.innerHTML = 
 
     '<div class="col-md-12"><div class="row"><a ><i class="fa fa-times cerrar-info" aria-hidden="true"></i></a>'  +
-    '<h4> '+  props.nombre+ '-' + info_asentamiento[0].ciudad + '</h4>' + 
-    '<div class="col-md-6"><b><i class="flaticon-tiles info-icon"></i> Superficie</b><p>'     + info_asentamiento[0].superficie + ' metros <sup>2</sup></p></div>' +   
-    '<div class="col-md-6"><b><i class="flaticon-user-black-close-up-shape info-icon"></i> Poblador mas antiguo</b><p>'     + info_asentamiento[0].poblador_mas_antiguo + '</p></div>' +  
-        '<div class="col-md-6"><b><i class="flaticon-multiple-users-silhouette info-icon"></i>Cantidad de Familias</b><p>'     + info_asentamiento[0].numero_familias + '</p></div>' +
-     '<div class="col-md-6"><b><i class="flaticon-neighborhood info-icon "></i>Cantidad aprox. de viviendas</b><p>'     + info_asentamiento[0].numero_aprox_viviendas + '</p></div>' +
+    '<h4> '+  props.nombre + '</h4>' + 
+    '<h5> '+  info_asentamiento[0].ciudad + '</h5>' + 
+    '<div class="col-md-6"><div> <b><i class="flaticon-tiles info-icon"></i> Superficie</b><p>'     + info_asentamiento[0].superficie + ' metros <sup>2</sup></p></div></div>' +   
+    '<div class="col-md-6"><div><b><i class="flaticon-user-black-close-up-shape info-icon"></i> Poblador mas antiguo</b><p>'     + info_asentamiento[0].poblador_mas_antiguo + '</p></div></div>' +  
+        '<div class="col-md-6"><div><b><i class="flaticon-multiple-users-silhouette info-icon"></i>Cantidad de Familias</b><p>'     + info_asentamiento[0].numero_familias + '</p></div></div>' +
+     '<div class="col-md-6"><div><b><i class="flaticon-neighborhood info-icon "></i>Cantidad aprox. de viviendas</b><p>'     + info_asentamiento[0].numero_aprox_viviendas + '</p></div></div>' +
     
 
-     '<div class="col-md-6"><b><i class="fa fa-tint info-icon" aria-hidden="true"></i>Provisión de Agua </b><p>'     + info_asentamiento[0].agua_tipo_provision + '</p> </div>'  +
+     '<div class="col-md-6"><div><b><i class="fa fa-tint info-icon" aria-hidden="true"></i>Provisión de Agua </b><p>'     + info_asentamiento[0].agua_tipo_provision + '</p> </div></div>'  +
 
-    '<div class="col-md-6"><b><i class="fa fa-bolt info-icon" aria-hidden="true" ></i>Conexion Electrica</b><p>'     + info_asentamiento[0].energia_tipo_provision + ' </p></div>' +
-    '<div class="col-md-6"><b><i class="flaticon-bathroom info-icon" aria-hidden="true" ></i>Tipo de Desague</b><p>'     + info_asentamiento[0].excretas + ' </p></div>' +
-    '<div class="col-md-6"><b><i class="flaticon-lamp-post info-icon" aria-hidden="true"></i>Alumbrado Publico</b><p>'     + info_asentamiento[0].alumbrado_publico + ' <br>' +  info_asentamiento[0].alumbrado_publico_otro+ ' </p></div>' +
+    '<div class="col-md-6"><div><b><i class="fa fa-bolt info-icon" aria-hidden="true" ></i>Conexion Electrica</b><p>'     + info_asentamiento[0].energia_tipo_provision + ' </p></div></div>' +
+    '<div class="col-md-6"><div><b><i class="flaticon-bathroom info-icon" aria-hidden="true" ></i>Tipo de Desague</b><p>'     + info_asentamiento[0].excretas + ' </p></div></div>' +
+    '<div class="col-md-6"><div><b><i class="flaticon-lamp-post info-icon" aria-hidden="true"></i>Alumbrado Publico</b><p>'     + info_asentamiento[0].alumbrado_publico + ' <br>' +  info_asentamiento[0].alumbrado_publico_otro+ ' </p></div></div>' +
    /* '<div class="col-md-6"><b><i class="flaticon-signs info-icon" aria-hidden="true" ></i>Combustible para cocinar</b><p>'     + info_asentamiento[0].cocina_metodo + ' <br>' +info_asentamiento[0].cocina_metodo_otro + ' </p></div>' +
     '<div class="col-md-6"><b><i class="flaticon-garbage info-icon" aria-hidden="true"></i>Recolección de basura</b><p>'     + info_asentamiento[0].problema_eliminacion_basura + '<br> ' +info_asentamiento[0].eliminacion_basura_tipo + ' </p></div>' +*/
-    '<div class="col-md-6"><b><i class="flaticon-people info-icon" aria-hidden="true" ></i>Comisión Vecinal</b><p>'     + info_asentamiento[0].comision_vecinal + ' </p></div> </div></div>'
-
+    '<div class="col-md-6"><div><b><i class="flaticon-people info-icon" aria-hidden="true" ></i>Comisión Vecinal</b><p>'     + info_asentamiento[0].comision_vecinal + ' </p></div></div>' +
+    '<div class="col-md-6 text-center"><div><b><img src="/static/img/favicon.png"><br>Asentamiento Int. por TECHO?</b><p>'     + info_asentamiento[0].asentamiento_intervenido_techo + ' </p></div> </div></div></div>'
 
 
     
@@ -129,12 +130,11 @@ info.updateFull = function (props) {
 
 
 // FUNCION PARA ACCION EN ON HOVER3
-
-
 function highlightFeature(e) {
 
-
     var layer = e.target;
+    layer.openPopup();
+
 
     layer.setStyle({
         /*weight: 2,
@@ -152,36 +152,32 @@ function highlightFeature(e) {
 }
 
 
+
+
+
+
+//Hacer zoom hasta donde esta el poligono
 function zoomToFeature(e) {
     mymap.fitBounds(e.target.getBounds());
    
 }
 
 // FUNCION PARA ACCION EN ON HOVER3
-
-
 function highlightFeatureFull(e) {
-
-
     var layer = e.target;
-
+    //layer.closePopup();
     layer.setStyle({
         weight: 2,
         color: '#666',
         dashArray: '',
         fillOpacity: 0.7
     });
-
     if (!L.Browser.ie && !L.Browser.opera) {
         layer.bringToFront();
     }
- //   console.log(layer.feature.properties);
+ //console.log(layer.feature.properties);
    info.updateFull(layer.feature.properties);  //controla la info de la caja
    zoomToFeature(e);
-
-
-
-
 }
 
 
@@ -190,10 +186,19 @@ function highlightFeatureFull(e) {
 
 // FUNCION PARA RESETEAR ESTILO LUEGO DEL ON HOVER
 function resetHighlight(e) {
-    console.log("resetHighlight");
+  //  console.log("resetHighlight");
     CapaAsentamientos.resetStyle(e.target);
+     var layer = e.target;
+    //layer.closePopup();
    // info.update(); //controla la info de la caja
 }
+
+
+
+var greenIcon = L.icon({
+    iconUrl: '/static/img/favicon.png',
+  
+});
 
 
 
@@ -202,19 +207,56 @@ function resetHighlight(e) {
 // FUNCION PARA LOS EVENT LISTENERS DE CADA CAPA
 function onEachFeature(feature, layer) {   
     feature.properties.algo = "no";
+
+    info_asentamiento = getObjects(datos_encuesta,'identificador',String(feature.properties.id));
+    if(info_asentamiento[0]){
+          if (info_asentamiento[0].asentamiento_intervenido_techo != ""){
+
+              //  console.log(layer.getBounds().getCenter());
+
+               asentamiento_intervenido =  L.marker(layer.getBounds().getCenter(),{}).on('click', function(e){mymap.setView([e.latlng.lat, e.latlng.lng], 20);})
+                LayerIntervenido.addLayer(asentamiento_intervenido);
+
+                
+          }
+      }
+
+
   //   layer.bindPopup(feature.properties.nombre);    
      layer.on({
-        mouseover: highlightFeature,
+      // mouseover: highlightFeature,
+      
        mouseout: resetHighlight,
-        click: highlightFeatureFull 
+        click: highlightFeature,
+        dblclick: highlightFeatureFull 
     });
-  //    layer.bindPopup(feature.properties.nombre);       
+     //layer.bindPopup(feature.properties.nombre);       
 }
 
 
 /* Estilos de los poligonos */
 
 function style(feature) {
+  info_asentamiento = getObjects(datos_encuesta,'identificador',String(feature.properties.id));
+
+  //console.log(info_asentamiento[0]);
+
+
+if(info_asentamiento[0]){
+
+
+  if (info_asentamiento[0].asentamiento_intervenido_techo != ""){
+    return    {
+        fillColor: "#DA4A28",
+        weight: 2,
+        opacity: 1,
+        color: '#DA4A28',
+       // dashArray: '3',
+        fillOpacity: 0.8
+    };
+  }
+
+  }
     return {
         fillColor: "#DD4395",
         weight: 2,
@@ -263,51 +305,17 @@ $.getJSON( "/static/py_ciudad.json", function( data ) {
             style: styleCiudades ,
            // onEachFeature: onEachFeature,
            
-            }).addTo(mymap);
+            }).addTo(mymap); //Agrego limites de los municipios
 
-
+    LayerIntervenido = new L.LayerGroup();
+    LayerIntervenido.addTo(mymap);
 
     $.getJSON( "/static/js/pais.json", function( data ) {
 
-      console.log("geojson");
-      console.log(data);
-      asentamientos = data;
+     // console.log("geojson");
+      //console.log(data);
+      asentamientos = data;        
 
-      /* Si tiene Hash */
-      hash = window.location.hash.substr(1);
-
-      if (hash) {
-
-          console.log(hash.split("-")[0]);
-          if (hash.split("-")[0]== "ciudad"){
-
-          console.log(hash.split("-")[0])
-          console.log(ciudadesAsuncion);
-          var returnedData = $.grep(ciudadesAsuncion, function (element, index) {
-                                   return element.properties.NAME_2.toLowerCase() == hash.split("-")[1].toLowerCase();
-                    });
-
-          ciudadFocus =  L.geoJson(returnedData);
-          console.log(returnedData);
-          mymap.fitBounds(ciudadFocus.getBounds());               
-
-          }
-          else if (hash.split("-")[0]== "asentamiento"){
-             //  console.log(asentamientos.features);
-          jjj =  jQuery.map(asentamientos.features, function(obj ) {
-                                                  //console.log(obj.properties.id_central + "-" + hash)
-                                                      if(obj.properties.id == hash.split("-")[1])
-                                                    //    console.log (obj);
-                                                         return obj; // or return obj.name, whatever.
-                                                      });
-                      //console.log(datoAsentamiento);
-          targetAsentamiento = jjj[0];
-          console.log(jjj)
-          asentamientoFocus = L.geoJson(targetAsentamiento);  
-          mymap.fitBounds(asentamientoFocus.getBounds());
-          }  // fin elseif      
-        
-      } /* Fin del HASH*/
 
       /* Traigo los datos del RAP*/
       $.getJSON( "http://"+dominio+"/asentamiento/", function( encuesta ) { 
@@ -317,24 +325,18 @@ $.getJSON( "/static/py_ciudad.json", function( data ) {
                     style: style ,
                     onEachFeature: onEachFeature,
                    
-                    }).addTo(mymap);
+                    }).addTo(mymap);//.addTo(mymap);      
           CapaAsentamientosBase = CapaAsentamientos;
           var fuse = new Fuse(data.features, {
                 keys: ['properties.nombre', ]
             });
-
-          /* Search un MultiLayers */   
-
+          /* Search un MultiLayers */
           var poiLayers = L.layerGroup([
               L.geoJson(data,{ 
                   style: style ,
-                  onEachFeature: onEachFeature,
-                 
-                  }),
-           
-          ])        
-
-
+                  onEachFeature: onEachFeature,                 
+                  }),           
+          ])  
         /* Configuration of Search box*/
           new L.Control.Search({layer: CapaAsentamientos,
             autoType: true,
@@ -369,13 +371,50 @@ $.getJSON( "/static/py_ciudad.json", function( data ) {
           }).addTo(mymap);
         /* Fin de Search */
 
-          info.addTo(mymap);
+         info.addTo(mymap);
 
           /* Deshabilito funcion de scroll para que el cuadro de info */
-
           var container = document.getElementsByClassName("info")[0];
-           L.DomEvent.disableClickPropagation(container)
+          L.DomEvent.disableClickPropagation(container)
           L.DomEvent.disableScrollPropagation(container);
+
+                /* Si tiene Hash */
+      hash = window.location.hash.substr(1);
+      if (hash) {
+
+          console.log(hash.split("-")[0]);
+          if (hash.split("-")[0]== "ciudad"){ // si estoy buscando una ciudad especifica
+
+          console.log(hash.split("-")[0])
+          console.log(ciudadesAsuncion);
+          var returnedData = $.grep(ciudadesAsuncion, function (element, index) {
+                                   return element.properties.NAME_2.toLowerCase() == hash.split("-")[1].toLowerCase();
+                    });
+
+          ciudadFocus =  L.geoJson(returnedData);
+          console.log(returnedData);
+          mymap.fitBounds(ciudadFocus.getBounds());               
+
+          }
+          else if (hash.split("-")[0]== "asentamiento"){ // si estoy buscando un asentamiento espeficifo
+             //  console.log(asentamientos.features);
+          jjj =  jQuery.map(asentamientos.features, function(obj ) {
+                                                  //console.log(obj.properties.id_central + "-" + hash)
+                                                      if(obj.properties.id == hash.split("-")[1])
+                                                    //    console.log (obj);
+                                                         return obj; // or return obj.name, whatever.
+                                                      });
+                      //console.log(datoAsentamiento);
+          targetAsentamiento = jjj[0];
+          console.log(jjj)
+
+          asentamientoFocus = L.geoJson(targetAsentamiento);  
+          info.updateFull(targetAsentamiento.properties); 
+
+          mymap.fitBounds(asentamientoFocus.getBounds());
+          }  // fin elseif      
+        
+      } /* Fin del HASH*/
 
        
               
@@ -386,6 +425,46 @@ $.getJSON( "/static/py_ciudad.json", function( data ) {
     })/* fIN Get CIUDADES*/
 
 }) /* Fin de Get POLIGONOS RAP*/
+
+
+var techeroIcon = L.icon({
+    iconUrl: '/static/images/marker-icon.png',
+    shadowUrl: '/static/images/marker-shadow.png',
+
+   // iconSize:     [38, 95], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [13, 40], // point of the icon which will correspond to marker's location
+    //shadowAnchor: [4, 62],  // the same for the shadow
+    //popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
+
+
+
+/* DONDE ESTOY */
+
+
+mymap.locate();
+
+function onLocationFound(e) {
+    var radius = e.accuracy / 2;
+
+    L.marker(e.latlng, {icon: techeroIcon}).addTo(mymap)
+        .bindPopup("Estas en radio de " + radius + " metros de este lugar");
+
+    L.circle(e.latlng, radius).addTo(mymap);
+}
+
+mymap.on('locationfound', onLocationFound);
+
+function onLocationError(e) {
+    alert(e.message);
+}
+
+mymap.on('locationerror', onLocationError);
+
+/* FIN DONDE ESTOY */
+
 
 
 
@@ -402,6 +481,7 @@ var sidebar = L.control.sidebar('sidebar', {
 /* LIMPIAR TODO EL MAPA */
 $('#limpiar').on('click',function(){
   CapaAsentamientos.clearLayers()
+  LayerIntervenido.clearLayers()
 })
 
 
@@ -414,6 +494,8 @@ function Agua (){
     if (tipo){
     Filtrado = CapaAsentamientos.toGeoJSON();
     CapaAsentamientos.clearLayers();
+     LayerIntervenido.clearLayers()
+
     CapaAsentamientos = L.geoJson(Filtrado,{
             style: style ,
             onEachFeature: onEachFeature,
@@ -458,6 +540,8 @@ function Energia(){
    if (tipo){
     Filtrado = CapaAsentamientos.toGeoJSON();
     CapaAsentamientos.clearLayers();
+     LayerIntervenido.clearLayers()
+
     CapaAsentamientos = L.geoJson(Filtrado,{
             style: style ,
             onEachFeature: onEachFeature,
@@ -495,56 +579,89 @@ function Energia(){
 
 function FiltroCiudad() {
 
-
   ciudad_selecionada =  $('#sel1 option:selected').text();
   console.log(ciudad_selecionada);
-
   if (ciudad_selecionada!=''){
-  console.log("Tiene filtro de ciudad")
-  console.log(CapaCiudades);
- 
-  CapaAsentamientos.clearLayers();
-  CapaAsentamientos = L.geoJson(asentamientos,{
-            style: style ,
-            onEachFeature: onEachFeature,
+        console.log("Tiene filtro de ciudad")
+        console.log(CapaCiudades);       
+        CapaAsentamientos.clearLayers();
+         LayerIntervenido.clearLayers()
+        CapaAsentamientos = L.geoJson(asentamientos,{
+                  style: style ,
+                  onEachFeature: onEachFeature,
+                  filter: function(feature, layer) {       
+                       
 
-    filter: function(feature, layer) {
-
-
-          
-         
-
-          if (feature.properties.nombre_distrito == ciudad_selecionada){
-              return true;
-          }else {
-              return false;
-          }
-
-          
-         
-  } 
-
-
-
-           
-            }).addTo(mymap);
+                        if (feature.properties.nombre_distrito == ciudad_selecionada){
+                            return true;
+                        }else {
+                            return false;
+                        }          
+                       
+                }                 
+                  }).addTo(mymap);
 
   }
   else{
       console.log("Sin filtro Ciudades")
       CapaAsentamientos.clearLayers();
+       LayerIntervenido.clearLayers()
       CapaAsentamientos = L.geoJson(asentamientos,{
+                              style: style ,
+                              onEachFeature: onEachFeature,
+                          }).addTo(mymap);
+      }//END ELSE
+
+}// END FILTRO CIUDAD
+
+
+function FiltroTecho(){ 
+
+  tipo = $('input[name=techo]:checked').val();
+
+   if (tipo){
+    Filtrado = CapaAsentamientos.toGeoJSON();
+    CapaAsentamientos.clearLayers();
+     LayerIntervenido.clearLayers()
+    CapaAsentamientos = L.geoJson(Filtrado,{
             style: style ,
             onEachFeature: onEachFeature,
+            filter: function(feature, layer) {                  
+                  id_poligono = feature.properties.id;
+                  if (id_poligono != null){
+                    id_poligono = id_poligono.toString();
+                  }
+                  else{
+                    id_poligono= '';
+                  }
+                  datoAsentamiento =  jQuery.map(datos_encuesta, function(obj ) {
+                                                //console.log(algo)
+                                                  if(obj.identificador == id_poligono)
+                                                     return obj; // or return obj.name, whatever.
+                                                  });
+                  //console.log(datoAsentamiento);
+                  datoAsentamiento = datoAsentamiento[0];
+                  //console.log(datoAsentamiento);
+                  if (datoAsentamiento) {   
 
-    
+                  if (tipo == 'si') {
+                      if (datoAsentamiento.asentamiento_intervenido_techo != tipo  ){
+                                                return true;
+                                            }
+                      }else if (tipo == 'no')  {
+                                return false;
+                            }        
 
+                      
 
-
-  }).addTo(mymap);
+                  }
+                  return false;
+          }            
+            }).addTo(mymap);
+}else{console.log("energia no marcada")}
 }
 
-}
+
 
 
 /* lISTENERS DE EVENTOS */
@@ -553,6 +670,7 @@ $( "#sel1" ).change(function(){
    FiltroCiudad();   
   Agua();
    Energia();
+    FiltroTecho();
 });
 
 $( ".agua" ).click(function(){
@@ -560,6 +678,7 @@ $( ".agua" ).click(function(){
     FiltroCiudad();   
     Agua();
     Energia();
+     FiltroTecho();
 })
 
 $( ".energia" ).click(function(){
@@ -567,7 +686,19 @@ $( ".energia" ).click(function(){
  FiltroCiudad();
  Agua(); 
  Energia();
+  FiltroTecho();
 })
+/*
+
+$( ".techo" ).click(function(){
+//alert(this.value);
+
+ FiltroCiudad();
+ Agua(); 
+ Energia();
+ FiltroTecho();
+})
+*/
 
 
 

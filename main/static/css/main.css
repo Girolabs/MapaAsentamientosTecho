@@ -229,7 +229,7 @@ a.btn.btn-white:hover {
 }
 
 #mapcanvas  .info.leaflet-control {
-        background: rgba(0, 146, 221, 0.57);
+        background: rgba(0, 146, 221, 0.9);
       padding: 20px;
     margin-right: 0px;
     width: 40%;
@@ -239,7 +239,16 @@ a.btn.btn-white:hover {
     color: white;
 }
 
-
+#mapcanvas  .info.leaflet-control h5{
+    color: #575756;
+    margin-top: 3px;
+    padding-bottom: 6px;
+    border-bottom: solid 2px #575756;
+}
+#mapcanvas  .info.leaflet-control h4{
+color: white;
+margin-bottom: 0px;
+}
 .search-tooltip a.search-tip {
   
     border-radius: 0px;
@@ -306,6 +315,11 @@ thead .form-group {
 
 table.DTFC_Cloned thead tr {
     background: transparent;
+}
+
+
+.sidebar {
+     box-shadow: 0 1px 5px rgba(0,0,0,0); 
 }
 
 #sidebar .sidebar-left.collapsed~.sidebar-map .leaflet-left {
@@ -417,7 +431,7 @@ div#sidebar.collapsed {
 
 .info.leaflet-control .col-md-6{
     text-align: center;
-        min-height: 100px;
+       
 }
 
 .cuadro {
@@ -442,6 +456,11 @@ background: #35383B;
 td.dataTables_empty {
     text-align: left !important;
     padding-left: 35px !important;
+}
+
+div.dataTables_wrapper div.dataTables_filter
+{
+        text-align: left;
 }
 
 ul.nav.navbar-nav.navbar-right li:hover {
@@ -524,6 +543,24 @@ a.twitter {
 .sidebar-left~.sidebar-map {
     margin-left: 0px;
 }
+
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: #616161;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+    color: white;
+    border-radius: 0px;
+}
+
+
+.info.leaflet-control .col-md-6 div {
+    border-bottom: solid 1px;
+    height: 120px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+
 
 @media (max-width: 1080px) { 
 #mapcanvas .info.leaflet-control {

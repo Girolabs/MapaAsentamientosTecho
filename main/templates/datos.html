@@ -15,19 +15,19 @@
   {% block contenido%}
 
 <div class="container datos">
-    <h1 class="center">Datos de asentamientos relevados</h1>
-  
+    <h1 class="center">Datos de asentamientos relevados</h1> 
+
 
 
     <table id="tabla-asentamientos" class="display table table-striped table-hover table-condensed " cellspacing="0" width="100%">
       
         <thead>
             <tr>
-                <th>Asentamiento</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
+                <th>Asentamiento</br></th>
                  <th>Ver en Mapa</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
 
 
-                <th>Ciudad </br> <input class="form-control input-sm" type="text" placeholder="Buscar Ciudad" /></th>
+                <th>Ciudad</br> <input class="form-control input-sm" type="text" placeholder="Buscar Ciudad" /></th>
                 
                 <th>Posee loteamiento</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
                 <th>Cómo se originó</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
@@ -38,10 +38,17 @@
                 <th>medida de lotes</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
                 <th>número viviendas</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
                 <th>número viviendas precarias</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
-                <th>número de familias</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
-                    <th>Provision de Agua</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
+               
+                <th>Provision de Agua</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
                <th>Energía</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
-                
+               <th>Alumbrado Publico</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
+              <th>Excretas</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
+                <th>Cocina Metodo</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
+                <th>Material de Vias de  Acceso</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
+                <th>Distancia Escuela Pública</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
+                <th>Distancia Colegio Público</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
+                       <th>Distancia Transporte Publico </br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
+                 <th>Asentamiento Intervenido por TECHO</br><input class="form-control input-sm" type="text" placeholder="Buscar" /></th>
 
             </tr>
            
@@ -133,9 +140,24 @@ dominio = "{{ config.dominio }}" ;
                     { data: 'medida_lotes'},
                     { data: 'numero_aprox_viviendas'},
                     { data: 'numero_aprox_viviendas_precarias'},
-                    { data: 'numero_familias'},
+                   
                     { data: 'agua_tipo_provision'},
                     { data: 'energia_tipo_provision'},
+                    { data: 'alumbrado_publico'},
+                    { data: 'excretas'},
+                    { data: 'cocina_metodo'},
+                     { data: 'vias_acceso_material'},
+                       { data: 'distancia_escuela_publica'},
+                         { data: 'distancia_colegio_nacional'},
+                           { data: 'distancia_transporte_publico'},
+                            { data: 'asentamiento_intervenido_techo'},
+                           
+
+
+
+
+
+
                     
                                         
                     
@@ -158,10 +180,8 @@ dominio = "{{ config.dominio }}" ;
                 },
                
             }
-        },
-
-        
-         {
+        },     
+      /*   {
                 extend: 'print',
                  text: 'Imprimir/PDF',
                  header: true,
@@ -173,6 +193,13 @@ dominio = "{{ config.dominio }}" ;
                     $(win.document.body).find( 'table' )
                         .addClass( 'compact' )
                         .css( 'font-size', 'inherit' );
+                }
+            },*/
+             {
+                text: 'Descargar areas Geograficas',
+                action: function ( e, dt, node, config ) {
+
+                     window.open( '/static/py_ciudad.json' );
                 }
             },
             
@@ -226,7 +253,7 @@ dominio = "{{ config.dominio }}" ;
     
    
 
-
+$( '.dt-buttons' ).append( 'hola' );
 
 
 } );
