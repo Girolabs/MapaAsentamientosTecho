@@ -210,7 +210,7 @@ function onEachFeature(feature, layer) {
 
     info_asentamiento = getObjects(datos_encuesta,'identificador',String(feature.properties.id));
     if(info_asentamiento[0]){
-          if (info_asentamiento[0].asentamiento_intervenido_techo != ""){
+          if (info_asentamiento[0].asentamiento_intervenido_techo != "no"){
 
               //  console.log(layer.getBounds().getCenter());
 
@@ -245,7 +245,7 @@ function style(feature) {
 if(info_asentamiento[0]){
 
 
-  if (info_asentamiento[0].asentamiento_intervenido_techo != ""){
+  if (info_asentamiento[0].asentamiento_intervenido_techo != "no"){
     return    {
         fillColor: "#DA4A28",
         weight: 2,
