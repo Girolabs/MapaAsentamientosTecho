@@ -26,7 +26,7 @@ class Asentamiento (models.Model):
 	numero_lotes = models.CharField(max_length = 1000, blank=True)
 	medida_lotes = models.CharField(max_length = 1000, blank=True)
 	numero_aprox_viviendas = models.CharField(max_length = 1000, blank=True)
-	numero_aprox_viviendas_precarias = models.CharField(max_length = 1000, blank=True)
+	numero_aprox_viviendas_precarias = models.BigIntegerField( blank=True)
 	numero_aprox_viviendas_precarias_otro = models.CharField(max_length = 1000, blank=True)
 	numero_familias = models.BigIntegerField(blank=True)
 	multiples_familias = models.CharField(max_length = 1000, blank=True)
