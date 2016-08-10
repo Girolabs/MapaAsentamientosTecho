@@ -318,7 +318,7 @@ $.getJSON( "/static/py_ciudad.json", function( data ) {
 
 
       /* Traigo los datos del RAP*/
-      $.getJSON( "http://"+dominio+"/asentamiento/", function( encuesta ) { 
+      $.getJSON( "https://"+dominio+"/asentamiento/", function( encuesta ) { 
           controlLoader.hide(); /* Saco el loader*/
           datos_encuesta = encuesta;
           CapaAsentamientos = L.geoJson(data,{
