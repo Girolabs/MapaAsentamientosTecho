@@ -13,11 +13,11 @@
 
    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="shortcut icon" href="http://{{ config.dominio }}{% static 'img/favicon.png' %}">
+    <link rel="shortcut icon" href="{{ config.dominio }}{% static 'img/favicon.png' %}">
   
     <title>Mapa de Asentamientos TECHO Paraguay</title>
     <meta name="description"    content="El Relevamiento de Asentamientos Precarios (RAP) parte como un proyecto de investigación emprendido por TECHO – Paraguay orientado a la caracterización socio‐territorial de asentamientos precarios o informales.">
-    <meta property="og:image" content="http://{{ config.dominio }}{% static 'img/screen.png' %}" />
+    <meta property="og:image" content="{{ config.dominio }}{% static 'img/screen.png' %}" />
     <meta name="keywords" content="Un techo para mi pais, paraguay, asentamientos,">
 <meta name="author" content="Girolabs">
   <!-- Leaflet -->

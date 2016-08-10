@@ -114,7 +114,7 @@ dominio = "{{ config.dominio }}" ;
 
    table = $('#tabla-asentamientos').DataTable( {
         "ajax": {
-                    url: 'http://'+dominio+'/asentamiento/',
+                    url: dominio+'/asentamiento/',
                     dataSrc: ''
                 },
          "pageLength": 50,
