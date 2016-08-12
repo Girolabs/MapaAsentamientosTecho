@@ -469,7 +469,7 @@ function onLocationFound(e) {
 mymap.on('locationfound', onLocationFound);
 
 function onLocationError(e) {
-    alert(e.message);
+    alert('No hemos podido encontrar tu ubicación :(');
 }
 
 mymap.on('locationerror', onLocationError);
