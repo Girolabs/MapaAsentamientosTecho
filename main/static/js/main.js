@@ -76,15 +76,17 @@ info.updateFull = function (props) {
 
   if (props) {
     console.log(props);
+
+    var centro = L.polygon(props.geometry.coordinates[0]).getBounds().getCenter();
     
-    info_asentamiento = getObjects(datos_encuesta,'identificador',String(props.id));
+    info_asentamiento = getObjects(datos_encuesta,'identificador',String(props.properties.id));
     console.log(info_asentamiento[0]);
 
     this._div.innerHTML = 
 
-    '<div class="col-md-12"><div class="row"><a ><i class="fa fa-times cerrar-info" aria-hidden="true"></i></a>'  +
-    '<h4> '+  props.nombre + '</h4>' + 
-    '<h5> '+  info_asentamiento[0].ciudad + '</h5>' + 
+    '<div class="col-md-12"><div class="row"><a ><i class="fa fa-times cerrar-info" aria-hidden="true"></i></a> '  +
+    '<h4> '+  props.properties.nombre + '</h4>' + 
+    '<h5> '+  info_asentamiento[0].ciudad + '<a class="btn  btn-raised btn-primary btn-sm" style="float: ;    background: #85B9D3;" target="_blank" href="https://www.google.com.py/maps/dir//'+centro.lng+','+centro.lat+'/"> Cómo llegar</a></h5>' + ''+
     '<div class="col-md-6"><div> <b><i class="flaticon-tiles info-icon"></i> Superficie</b><p>'     + info_asentamiento[0].superficie + ' metros <sup>2</sup></p></div></div>' +   
     '<div class="col-md-6"><div><b><i class="flaticon-user-black-close-up-shape info-icon"></i> Poblador mas antiguo</b><p>'     + info_asentamiento[0].poblador_mas_antiguo + '</p></div></div>' +  
         '<div class="col-md-6"><div><b><i class="flaticon-multiple-users-silhouette info-icon"></i>Cantidad de Familias</b><p>'     + info_asentamiento[0].numero_familias + '</p></div></div>' +
@@ -147,7 +149,7 @@ function highlightFeature(e) {
         layer.bringToFront();
     }
  //   console.log(layer.feature.properties);
-   info.updateFull(layer.feature.properties);  //controla la info de la caja
+   info.updateFull(layer.feature);  //controla la info de la caja
 
 }
 
@@ -176,7 +178,7 @@ function highlightFeatureFull(e) {
         layer.bringToFront();
     }
  //console.log(layer.feature.properties);
-   info.updateFull(layer.feature.properties);  //controla la info de la caja
+   info.updateFull(layer.feature);  //controla la info de la caja
    zoomToFeature(e);
 }
 
@@ -357,7 +359,7 @@ $.getJSON( "/static/py_ciudad.json", function( data ) {
                     //map.fitBounds( latlng.layer.getBounds() );
                     console.log(latlng.layer.feature.properties);
                     
-                    info.updateFull(latlng.layer.feature.properties)
+                    info.updateFull(latlng.layer.feature)
                     var zoom = map.getBoundsZoom(latlng.layer.getBounds());
                     map.setView(latlng, zoom); // access the zoom
                 },
@@ -409,7 +411,7 @@ $.getJSON( "/static/py_ciudad.json", function( data ) {
           console.log(jjj)
 
           asentamientoFocus = L.geoJson(targetAsentamiento);  
-          info.updateFull(targetAsentamiento.properties); 
+          info.updateFull(targetAsentamiento); 
 
           mymap.fitBounds(asentamientoFocus.getBounds());
           }  // fin elseif      
@@ -447,12 +449,21 @@ var techeroIcon = L.icon({
 mymap.locate();
 
 function onLocationFound(e) {
-    var radius = e.accuracy / 2;
+    var radius =  e.accuracy / 2  ;
+
+   radiusStyle = {
+   
+    fillColor: "rgba(0, 146, 221, 0.4)",
+    color: "rgba(0, 146, 221, 0.95)",
+    weight: 1,
+    opacity: 1,
+    fillOpacity: 0.8
+};
 
     L.marker(e.latlng, {icon: techeroIcon}).addTo(mymap)
         .bindPopup("Estas en radio de " + radius + " metros de este lugar");
 
-    L.circle(e.latlng, radius).addTo(mymap);
+    L.circle(e.latlng, radius, radiusStyle).addTo(mymap);
 }
 
 mymap.on('locationfound', onLocationFound);
