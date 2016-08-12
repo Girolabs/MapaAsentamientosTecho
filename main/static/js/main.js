@@ -1,5 +1,5 @@
 var calles = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    attribution: '' ,// 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    attribution: 'Desarrollado por  <a href="http://girolabs.com/">Girolabs</a>' ,// 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
     maxZoom: 18,
     id: 'rodrivaldez5.pncm6kio',
     accessToken: 'pk.eyJ1Ijoicm9kcml2YWxkZXo1IiwiYSI6ImNpbjZpcnJkNzAwajB0bWtzMzRsZm1oMHMifQ._pV5bBqoRbMk9fgFKQNHYQ'
@@ -13,12 +13,12 @@ var mymap = L.map('mapcanvas',{ layers: [ calles]}).setView([-25.290800, -57.559
 
 
 var baseMaps = {
-    "satelite": satelite,
-    "calles": calles
+    "Satelite": satelite,
+    "Mapa": calles
 };
 
 
-L.control.layers( baseMaps,null,{position:'bottomright'}).addTo(mymap);
+L.control.layers( baseMaps,null,{position:'bottomleft'}).addTo(mymap);
 
 /* CUADRO DE INFORMACION PERSONALIZADO */
 /* source:http://leafletjs.com/examples/choropleth.html*/
@@ -27,9 +27,10 @@ var info = L.control();
 
 info.onAdd = function (map) {
     this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-    this._divFull = L.DomUtil.create('div', 'infoFull');
+  this._divFull = L.DomUtil.create('div', 'infoFull');
    // this.update();
-    this._div.innerHTML =  '<h4>'+ "Mapa"+'</h4>' + 'Posicionate sobre un asentamiento para ver los datos';
+ //   this._div.innerHTML =  '<h4>'+ "Mapa"+'</h4>' + 'Posicionate sobre un asentamiento para ver los datos';
+
 
     return this._div;
 };
@@ -71,7 +72,15 @@ info.updateFull = function (props) {
    // console.log("Datos encuesta");
   //  console.log(datos_encuesta[1]);
   console.log("UPDATEFULL");
+
+  $(".leaflet-control.info").css("display", "none");
   $(".leaflet-control.info").css("display", "block");
+
+    $(".leaflet-control.info").removeClass("animated fadeInRight")
+  $(".leaflet-control.info").addClass("animated fadeInRight")
+
+  
+  
   
 
   if (props) {
@@ -84,7 +93,7 @@ info.updateFull = function (props) {
 
     this._div.innerHTML = 
 
-    '<div class="col-md-12"><div class="row"><a ><i class="fa fa-times cerrar-info" aria-hidden="true"></i></a> '  +
+    '<div class="col-md-12 animated fadeInRight"><div class="row"><a ><i class="fa fa-times cerrar-info" aria-hidden="true"></i></a> '  +
     '<h4> '+  props.properties.nombre + '</h4>' + 
     '<h5> '+  info_asentamiento[0].ciudad + '<a class="btn  btn-raised btn-primary btn-sm" style="float: ;    background: #85B9D3;" target="_blank" href="https://www.google.com.py/maps/dir//'+centro.lng+','+centro.lat+'/"> Cómo llegar</a></h5>' + ''+
     '<div class="col-md-6"><div> <b><i class="flaticon-tiles info-icon"></i> Superficie</b><p>'     + info_asentamiento[0].superficie + ' metros <sup>2</sup></p></div></div>' +   
@@ -379,6 +388,7 @@ $.getJSON( "/static/py_ciudad.json", function( data ) {
           var container = document.getElementsByClassName("info")[0];
           L.DomEvent.disableClickPropagation(container)
           L.DomEvent.disableScrollPropagation(container);
+          $(".leaflet-control.info").css("display", "none");
 
                 /* Si tiene Hash */
       hash = window.location.hash.substr(1);
