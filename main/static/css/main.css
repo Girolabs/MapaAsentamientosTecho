@@ -380,7 +380,7 @@ div#sidebar.collapsed {
 }
 
 .cerrar-info {
-    position: fixed;
+    position: absolute;
     right: -15px;
     top: -15px;
     font-size: 12px;
