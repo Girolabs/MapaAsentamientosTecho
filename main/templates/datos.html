@@ -17,6 +17,12 @@
 <div class="container datos">
     <h1 class="center">Datos de asentamientos relevados</h1> 
 
+    <p>Los datos presentados fueron relevados en el mes de setiembre del 2015  mediante el gran esfuerzo de  un grupo de voluntarios de TECHO, ademas estan en constante actualizacion. </p>
+
+    <p>Datos disponibles bajo la licencia <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" title="Este portal se encuentra bajo licencias Creative Commons con Atribuciones de Licencia Internacional ShareAlike 4.0.">Creative Commons CC-BY 
+            <img style="border-width:0; " src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"></a></p>
+
+
 
 
     <table id="tabla-asentamientos" class="display table table-striped table-hover table-condensed " cellspacing="0" width="100%">
@@ -169,7 +175,7 @@ dominio = "{{ config.dominio }}" ;
       "ordering": false,
       dom: 'Bfrtip',
         buttons: [
-           {
+         /*  {
             extend: 'csvHtml5',
             text: 'Bajar CSV',
              filename: 'mapaasentamientos',
@@ -181,7 +187,7 @@ dominio = "{{ config.dominio }}" ;
                
             }
         },     
-      /*   {
+         {
                 extend: 'print',
                  text: 'Imprimir/PDF',
                  header: true,
@@ -195,6 +201,13 @@ dominio = "{{ config.dominio }}" ;
                         .css( 'font-size', 'inherit' );
                 }
             },*/
+            {
+                text: 'Descargar datos',
+                action: function ( e, dt, node, config ) {
+
+                     window.open( '/descarga-asentamientos/' );
+                }
+            },
              {
                 text: 'Descargar areas Geograficas',
                 action: function ( e, dt, node, config ) {
@@ -202,6 +215,15 @@ dominio = "{{ config.dominio }}" ;
                      window.open( '/static/py_ciudad.json' );
                 }
             },
+
+              {
+                text: 'Descargar documento de encuesta',
+                action: function ( e, dt, node, config ) {
+
+                     window.open( '/static/encuesta-rap.pdf' );
+                }
+            },
+             
             
         ],
         "language": {

@@ -11,7 +11,8 @@ class AsentamientoResource(resources.ModelResource):
 
     class Meta:
         model = Asentamiento
-        import_id_fields = ('identificador',)
+        #import_id_fields = ('identificador',)
+        exclude = ('id', 'nombre_Encuestador','cel_encuestador','nombre_lider','cargo','cel_lider','numero_familias')
 
 
 
@@ -23,3 +24,5 @@ class AsentamientoAdmin(ImportExportModelAdmin):
 	pass
 
 admin.site.register(Asentamiento,AsentamientoAdmin)
+
+

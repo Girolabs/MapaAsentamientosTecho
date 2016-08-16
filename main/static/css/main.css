@@ -398,6 +398,10 @@ div#sidebar.collapsed {
     border: solid rgb(186, 180, 173) 2px;
 }
 
+.leaflet-control-attribution{
+    display: none;
+}
+
 .leaflet-control-search .search-button{
     background-position: 5px 4px !important; 
     height: 30px;

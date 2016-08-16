@@ -15,6 +15,7 @@ from django.db.models import Count, Sum
 import json
 from django.core import serializers
 from constance import config
+from main.admin import AsentamientoResource
 
 class DecimalEncoder(json.JSONEncoder):
     def _iterencode(self, o, markers=None):
@@ -54,6 +55,15 @@ def graficos(request):
 def datos(request):
     context = {'config': config}
     return render_to_response('datos.html', context)
+
+
+def descargaAsentamientos(request):
+   
+    dataset = AsentamientoResource().export()
+    response = HttpResponse(dataset.csv, content_type="csv")
+    response['Content-Disposition'] = 'attachment; filename=asentamientos.csv'
+    return response
+   
 
 
 # Create your views here.

@@ -17,8 +17,17 @@ var baseMaps = {
     "Mapa": calles
 };
 
+  LayerIntervenido = new L.LayerGroup();
+    LayerIntervenido.addTo(mymap);
 
-L.control.layers( baseMaps,null,{position:'bottomleft'}).addTo(mymap);
+    var overlayMaps = {
+    "Asentamientos Internvenidos por techo": LayerIntervenido
+};
+
+
+
+
+L.control.layers( baseMaps,overlayMaps,{position:'bottomleft'}).addTo(mymap);
 
 /* CUADRO DE INFORMACION PERSONALIZADO */
 /* source:http://leafletjs.com/examples/choropleth.html*/
@@ -318,8 +327,7 @@ $.getJSON( "/static/py_ciudad.json", function( data ) {
            
             }).addTo(mymap); //Agrego limites de los municipios
 
-    LayerIntervenido = new L.LayerGroup();
-    LayerIntervenido.addTo(mymap);
+  
 
     $.getJSON( "/static/js/pais.json", function( data ) {
 
