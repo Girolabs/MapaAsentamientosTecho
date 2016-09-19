@@ -52,6 +52,12 @@ def graficos(request):
     return render_to_response('graficos.html', context)
 
 
+def burbuja(request):
+    context = {'config': config}
+    return render_to_response('burbuja.html', context)
+
+
+
 def datos(request):
     context = {'config': config}
     return render_to_response('datos.html', context)

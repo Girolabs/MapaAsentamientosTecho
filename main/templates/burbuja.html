@@ -1,0 +1,44 @@
+{% load staticfiles %}
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Asentamientos</title>
+  <meta name="description" content="Example Bubble chart implementation in JS. Based on NYT visualization">
+  <meta name="author" content="Jim Vallandingham">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="{% static 'burbuja/css/reset.css' %}">
+  <link rel="stylesheet" href="{% static 'burbuja/css/bubble_chart.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1>Distribución de asentamientos informales</h1>
+    <p>Cada circulo respresenta un asentamiento. El color del circulo distigue a los asentamientos del mismo distrito</p>
+    <p>El tamaño de los circulos es dada por la cantidad de viviendas precarias en cada asentamiento1</p>
+    <div id="toolbar">
+      <a href="#" id="all" class="button active">Todos los asentamientos</a>
+      <a href="#" id="year" class="button">Asentamientos por caminos</a>
+
+       <a href="#" id="loteamiento" class="button">Asentamientos por Loteamiento</a>
+    </div>
+    <div id="vis"></div>
+
+    <div class="footer">
+      <p></p>
+      <p></p>
+    </div>
+  </div>
+<script type="text/javascript">
+static = "{% static '' %}"
+</script>
+  <script src="{% static 'burbuja/lib/d3.js' %}"></script>
+  <script src="{% static 'burbuja/src/tooltip.js' %}"></script>
+  <script src="{% static 'burbuja/src/bubble_chart.js' %}"></script>
+
+ 
+
+
+</body>
+</html>
