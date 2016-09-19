@@ -601,7 +601,7 @@ function addCommas(nStr) {
 }
 
 // Load the data.
-d3.csv(static+ 'burbuja/data/asentamientos.csv', display);
+d3.csv(dominio+ '/asentamiento/', display);
 
 // setup the buttons.
 setupButtons();
