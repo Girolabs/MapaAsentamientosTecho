@@ -601,7 +601,7 @@ function addCommas(nStr) {
 }
 
 // Load the data.
-d3.csv(dominio+ '/asentamiento/', display);
+d3.json(dominio+ '/asentamiento/', display);
 
 // setup the buttons.
 setupButtons();
