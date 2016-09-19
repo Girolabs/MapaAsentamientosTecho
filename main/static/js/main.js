@@ -314,8 +314,8 @@ controlLoader.show();
 /* Traigo los poligonos */
 
 
-
-$.getJSON( "/static/py_ciudad.json", function( data ) {  
+// "/static/py_ciudad.json"
+$.getJSON( dominio+ "/poligonos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mapastecho:central&maxFeatures=50&outputFormat=application%2Fjson", function( data ) {  
 
     ciudades = data;
     ciudadesAsuncion = $.grep(ciudades.features, function (element, index) {
