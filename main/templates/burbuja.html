@@ -1,35 +1,69 @@
-{% load staticfiles %}
 
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Asentamientos</title>
-  <meta name="description" content="Example Bubble chart implementation in JS. Based on NYT visualization">
-  <meta name="author" content="Jim Vallandingham">
 
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="{% static 'burbuja/css/reset.css' %}">
+
+
+ {% extends "base.html" %}
+ {% load staticfiles %}
+
+
+
+  {% block contenido%}
+
+   <link rel="stylesheet" href="{% static 'burbuja/css/reset.css' %}">
   <link rel="stylesheet" href="{% static 'burbuja/css/bubble_chart.css' %}">
-</head>
-<body>
-  <div class="container">
-    <h1>Distribución de asentamientos informales</h1>
-    <p>Cada circulo respresenta un asentamiento. El color del circulo distigue a los asentamientos del mismo distrito</p>
-    <p>El tamaño de los circulos es dado por la cantidad de viviendas precarias en cada asentamiento.</p>
-    <div id="toolbar">
-      <a href="#" id="all" class="button active">Todos los asentamientos</a>
-      <a href="#" id="year" class="button">Asentamientos por caminos</a>
+<div class="container interna">
 
-       <a href="#" id="loteamiento" class="button">Asentamientos por Loteamiento</a>
-    </div>
-    <div id="vis"></div>
+    <div class="row">
 
-    <div class="footer">
-      <p></p>
-      <p></p>
+    <div class="col-md-12">
+        <div class="panel panel-info animated bounceInUp">
+
+         <div class="panel-heading">
+          <h1 style="padding: 37px 17px;padding-bottom: 0px;">Distribución de asentamientos informales</h1>
+        </div>      
+        
+          <div class="panel-body">
+            
+              <div class="contenido" style="min-height:500px;">
+
+              
+            
+              <h4>Explicación</h4>     
+            <p>Cada circulo respresenta un asentamiento. El color del circulo distigue a los asentamientos del mismo distrito.</p>
+            <p>El tamaño de los circulos es dado por la cantidad de viviendas precarias en cada asentamiento.</p>
+            <div id="toolbar">
+              <a  id="all" class="btn btn-default btn-raised active">Todos los asentamientos</a>
+              <a  id="year" class="btn btn-default btn-raised">Asentamientos por caminos</a>
+
+               <a  id="loteamiento" class="btn btn-default btn-raised">Asentamientos por Loteamiento</a>
+            </div>
+            <div id="vis"></div>
+
+            <div class="footer">
+              <p></p>
+              <p></p>
+            </div>
+                  
+              
+
+                    
+                    
+
+
+
+              </div>
+            </div>
+
+        </div>  
+
+
+    
+
+      </div>
     </div>
-  </div>
+</div>
+
+
 <script type="text/javascript">
 static = "{% static '' %}";
 dominio = "{{ config.dominio }}";
@@ -39,7 +73,7 @@ dominio = "{{ config.dominio }}";
   <script src="{% static 'burbuja/src/bubble_chart.js' %}"></script>
 
  
+      {% endblock %}
 
 
-</body>
-</html>
+

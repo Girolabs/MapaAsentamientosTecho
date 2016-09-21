@@ -565,6 +565,11 @@ a.twitter {
 }
 
 
+.card .contenido {
+    margin: 10px 20px;
+}
+
+
 
 @media (max-width: 1080px) { 
 #mapcanvas .info.leaflet-control {

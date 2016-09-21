@@ -19,6 +19,8 @@ urlpatterns = [
     url(r'^datos/$', views.datos, name='datos'),
     url(r'^metodologia/$', views.metodologia, name='metodologia'),
      url(r'^graficos/$', views.graficos, name='graficos'),
+      url(r'^graficos-barras/$', views.graficosBarra, name='graficosBarra'),
+     
        url(r'^burbuja/$', views.burbuja, name='burbuja'),
      url(r'^descarga-asentamientos/$', views.descargaAsentamientos, name='descargaAsentamientos'),
      #url(r'^asentamiento/$', views.AsentamientoViewSet.as_view()),

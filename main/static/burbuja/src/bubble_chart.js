@@ -10,7 +10,7 @@
  */
 function bubbleChart() {
   // Constants for sizing
-  var width = 940;
+  var width = document.getElementById('vis').offsetWidth;;
   var height = 600;
 
   // tooltip for mouseover functionality
@@ -40,7 +40,7 @@ function bubbleChart() {
    var LoteamientoCenters = {
     2008: { x:  (width / 4) * 1, y: height / 2 },
     2009: { x: (width / 4) * 2 , y: height / 2 },
-    2010: { x: (width / 4) * 3, y: height / 2 },
+    2010: { x: (width / 4) * 3, y: height / 2 }
  
   };
 
@@ -100,9 +100,9 @@ function bubbleChart() {
   function escalar (argument) {
     // body...
 
-    escala = argument/5;
-    if (escala <3) {
-      escala = 3;
+    escala = argument/15;
+    if (escala <5) {
+      escala = 5;
     };
 
     return escala
@@ -129,15 +129,15 @@ function bubbleChart() {
      myNodes = rawData.map(function (d) {
       return {
         id: d.identificador,
-        radius: escalar(d.numero_aprox_viviendas_precarias),
-        value: d.numero_aprox_viviendas_precarias,
+        radius: escalar(d.numero_aprox_viviendas),
+        value: d.numero_aprox_viviendas,
         name: d.asentamiento,
 
         org: d.ciudad,
         group: d.ciudad,
         year: d.vias_acceso_material,
          loteamiento: d.esta_loteada,
-        x: Math.random() * 900,
+        x: Math.random() * 700,
         y: Math.random() * 800
       };
     });
@@ -192,7 +192,7 @@ function bubbleChart() {
       .classed('bubble', true)
       .attr('r', 0)
       .attr('fill', function (d) { return fillColor(d.org); })
-      .attr('stroke', function (d) { return fillColor(d.org); })
+      .attr('stroke', '#eeeeee' )
       .attr('stroke-width', 2)
       .on('mouseover', showDetail)
       .on('mouseout', hideDetail);
@@ -405,9 +405,9 @@ function splitBubbles2() {
       }    
     
       else  {
-        tipo = 2011
+        tipo = 2010
       }    
-      var target = yearCenters[tipo];
+      var target = LoteamientoCenters[tipo];
       d.x = d.x + (target.x - d.x) * damper * alpha * 1.1;
       d.y = d.y + (target.y - d.y) * damper * alpha * 1.1;
     };
@@ -432,7 +432,7 @@ function splitBubbles2() {
 
     years.enter().append('text')
       .attr('class', 'loteamiento')
-      .attr('x', function (d) { return yearsTitleX[d]; })
+      .attr('x', function (d) { console.log(d); console.log(LoteamientoTitleX[d]) ;return LoteamientoTitleX[d]; })
       .attr('y', 40)
       .attr('text-anchor', 'middle')
       .text(function (d) { 
@@ -489,7 +489,7 @@ function splitBubbles2() {
     var content = '<span class="name">Nombre del Asentamiento: </span><span class="value">' +
                   d.name +
                   '</span><br/>' +
-                  '<span class="name">Cantidad de Viviendas Precarias: </span><span class="value">' +
+                  '<span class="name">Numero aprox. de Viviendas: </span><span class="value">' +
                   addCommas(d.value) +
                   '</span><br/>' +
                   '<span class="name">Tipo de Camino: </span><span class="value">' +
@@ -564,10 +564,10 @@ function display(error, data) {
  */
 function setupButtons() {
   d3.select('#toolbar')
-    .selectAll('.button')
+    .selectAll('.btn')
     .on('click', function () {
       // Remove active class from all buttons
-      d3.selectAll('.button').classed('active', false);
+      d3.selectAll('.btn').classed('active', false);
       // Find the button just clicked
       var button = d3.select(this);
 
