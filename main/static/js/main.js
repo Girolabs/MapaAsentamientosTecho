@@ -329,7 +329,7 @@ $.getJSON( dominio+ "/poligonos/ows?service=WFS&version=1.0.0&request=GetFeature
 
   
 
-    $.getJSON( "/static/js/pais.json", function( data ) {
+    $.getJSON( dominio+ "/poligonos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mapastecho:central&outputFormat=application%2Fjson", function( data ) {
 
      // console.log("geojson");
       //console.log(data);
