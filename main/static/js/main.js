@@ -315,7 +315,8 @@ controlLoader.show();
 
 
 // "/static/py_ciudad.json"
-$.getJSON( dominio+ "/poligonos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mapastecho:central&outputFormat=application%2Fjson", function( data ) {  
+//Traigo los poligonos de las ciudades de Asuncion
+$.getJSON( "/static/py_ciudad.json" , function( data ) {  
 
     ciudades = data;
     ciudadesAsuncion = $.grep(ciudades.features, function (element, index) {
