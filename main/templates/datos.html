@@ -1,5 +1,5 @@
  {% extends "base.html" %}
- {% load staticfiles %}
+ {% load static %}
 
  {% block meta-tags%}
 <style type="text/css">
@@ -131,20 +131,17 @@ dominio = "{{ config.dominio }}" ;
                     url: dominio+'/asentamiento/',
                     dataSrc: ''
                 },
-         "pageLength": 50,
+        "pageLength": 50,
         "columns": [
-                     { data: 'asentamiento'},
-                     {
+                    { data: 'asentamiento'},
+                    {
                         "title": "Mapa",
                         "render": function (data, type, row, meta) {
                             return '<a href="/mapa/#asentamiento-' + data + '">' + "Ven En Mapa" + '</a>';
                         },
                         data:'identificador',
-
-
                     },
-                    {  data: 'ciudad' },
-                   
+                    { data: 'ciudad' },
                     { data: 'esta_loteada'},
                     { data: 'origen'},
                     { data: 'poblador_mas_antiguo'},
@@ -154,30 +151,16 @@ dominio = "{{ config.dominio }}" ;
                     { data: 'medida_lotes'},
                     { data: 'numero_aprox_viviendas'},
                     { data: 'numero_aprox_viviendas_precarias'},
-                   
                     { data: 'agua_tipo_provision'},
                     { data: 'energia_tipo_provision'},
                     { data: 'alumbrado_publico'},
                     { data: 'excretas'},
                     { data: 'cocina_metodo'},
-                     { data: 'vias_acceso_material'},
-                       { data: 'distancia_escuela_publica'},
-                         { data: 'distancia_colegio_nacional'},
-                           { data: 'distancia_transporte_publico'},
-                            { data: 'asentamiento_intervenido_techo'},
-                           
-
-
-
-
-
-
-                    
-                                        
-                    
-
-      
-          
+                    { data: 'vias_acceso_material'},
+                    { data: 'distancia_escuela_publica'},
+                    { data: 'distancia_colegio_nacional'},
+                    { data: 'distancia_transporte_publico'},
+                    { data: 'asentamiento_intervenido_techo'},
         ],
           fixedColumns: true,
       "ordering": false,
@@ -220,7 +203,8 @@ dominio = "{{ config.dominio }}" ;
                 text: 'Descargar areas Geograficas(KML)',
                 action: function ( e, dt, node, config ) {
 
-                     window.open( 'https://www.mapadeasentamientos.org.py/poligonos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mapastecho:central&outputFormat=application%2Fvnd.google-earth.kml%2Bxml' );
+                    // window.open( 'https://www.mapadeasentamientos.org.py/poligonos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mapastecho:central&outputFormat=application%2Fvnd.google-earth.kml%2Bxml' );
+                    window.open( '/static/central.kml' );
                 }
             },
 
@@ -228,7 +212,8 @@ dominio = "{{ config.dominio }}" ;
                 text: 'Descargar areas Geograficas(Geojson)',
                 action: function ( e, dt, node, config ) {
 
-                     window.open( 'https://www.mapadeasentamientos.org.py/poligonos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mapastecho:central&outputFormat=application%2Fjson' );
+                    // window.open( 'https://www.mapadeasentamientos.org.py/poligonos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mapastecho:central&outputFormat=application%2Fjson' );
+                    window.open( '/static/poligonos.json' );
                 }
             },
 
@@ -236,7 +221,8 @@ dominio = "{{ config.dominio }}" ;
                 text: 'Descargar areas Geograficas(shp)',
                 action: function ( e, dt, node, config ) {
 
-                     window.open( 'https://www.mapadeasentamientos.org.py/poligonos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mapastecho:central&outputFormat=SHAPE-ZIP' );
+                    //  window.open( 'https://www.mapadeasentamientos.org.py/poligonos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mapastecho:central&outputFormat=SHAPE-ZIP' );
+                    window.open( '/static/central.zip' );
                 }
             },
 
