@@ -1,12 +1,21 @@
-var calles = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    attribution: 'Desarrollado por  <a href="http://girolabs.com/">Girolabs</a>' ,// 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    maxZoom: 18,
-    id: 'rodrivaldez5.pncm6kio',
-    accessToken: 'pk.eyJ1Ijoicm9kcml2YWxkZXo1IiwiYSI6ImNpbjZpcnJkNzAwajB0bWtzMzRsZm1oMHMifQ._pV5bBqoRbMk9fgFKQNHYQ'
-})
+// var calles = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+//     attribution: 'Desarrollado por  <a href="http://girolabs.com/">Girolabs</a>' ,// 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+//     maxZoom: 18,
+//     id: 'rodrivaldez5.pncm6kio',
+//     accessToken: 'pk.eyJ1Ijoicm9kcml2YWxkZXo1IiwiYSI6ImNpbjZpcnJkNzAwajB0bWtzMzRsZm1oMHMifQ._pV5bBqoRbMk9fgFKQNHYQ'
+// })
 
-var satelite = L.tileLayer('https://api.mapbox.com/styles/v1/rodrivaldez5/cipa7pkm3001ebrnrp38w08qu/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoicm9kcml2YWxkZXo1IiwiYSI6ImNpbjZpcnJkNzAwajB0bWtzMzRsZm1oMHMifQ._pV5bBqoRbMk9fgFKQNHYQ'
-)
+
+let calles = L.geoJson()
+let satelite = L.geoJson()
+$.getJSON("/static/poligonos.json",function(data){
+  L.geoJson(data).addTo(calles);
+  L.geoJson(data).addTo(calles);
+});
+
+
+// var satelite = L.tileLayer('https://api.mapbox.com/styles/v1/rodrivaldez5/cipa7pkm3001ebrnrp38w08qu/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoicm9kcml2YWxkZXo1IiwiYSI6ImNpbjZpcnJkNzAwajB0bWtzMzRsZm1oMHMifQ._pV5bBqoRbMk9fgFKQNHYQ'
+// )
 
 
 var mymap = L.map('mapcanvas',{ layers: [ calles]}).setView([-25.290800, -57.559465], 11);
@@ -330,7 +339,9 @@ $.getJSON( "/static/py_ciudad.json" , function( data ) {
 
   
 
-    $.getJSON( dominio+ "/poligonos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mapastecho:central&outputFormat=application%2Fjson", function( data ) {
+    // $.getJSON( dominio+ "/poligonos/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mapastecho:central&outputFormat=application%2Fjson", function( data ) {
+
+    $.getJSON("/static/poligonos.json",function(data){
 
      // console.log("geojson");
       //console.log(data);
