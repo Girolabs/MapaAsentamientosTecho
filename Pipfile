@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+diff-match-patch = "*" 
+django-constance = "*" 
+django-crispy-forms = "*" 
+django-filter = "*" 
+django-import-export = "*" 
+django-picklefield = "*" 
+djangorestframework = "*" 
+psycopg2 = "*" 
+tablib = "*" 
+
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
