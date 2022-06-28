@@ -133,6 +133,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+CSRF_TRUSTED_ORIGINS = ["mapatecho.staging.girolabs.cloud"]
+
 REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",)
 }
