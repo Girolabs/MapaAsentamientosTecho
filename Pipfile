@@ -14,7 +14,7 @@ django-picklefield = "*"
 djangorestframework = "*" 
 psycopg2 = "*" 
 tablib = "*" 
-
+django-cors-headers = "*"
 
 [dev-packages]
 
