@@ -15,6 +15,7 @@ djangorestframework = "*"
 psycopg2 = "*" 
 tablib = "*" 
 django-cors-headers = "*"
+gunicorn = "*"
 
 [dev-packages]
 
