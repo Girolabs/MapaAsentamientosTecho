@@ -16,6 +16,7 @@ psycopg2 = "*"
 tablib = "*" 
 django-cors-headers = "*"
 gunicorn = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
