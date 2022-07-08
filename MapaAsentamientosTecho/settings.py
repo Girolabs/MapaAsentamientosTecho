@@ -19,11 +19,11 @@ config = dotenv_values(".env")
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = config.get("secret_key")
+SECRET_KEY = config.get("SECRET_KEY")
 
-DEBUG = True if config.get("debug").lower() in ["true", 1] else False
+DEBUG = True if config.get("DEBUG").lower() in ["true", 1] else False
 
-ALLOWED_HOSTS = config.get("allowed_hosts").split(",")
+ALLOWED_HOSTS = config.get("ALLOWED_HOSTS").split(",")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -94,11 +94,11 @@ DATABASES = {
     # }
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": config["db_name"],
-        "USER": config["db_user"],
-        "PASSWORD": config["db_password"],
-        "HOST": config["db_host"],
-        "PORT": int(config["db_port"]),
+        "NAME": config["DB_NAME"],
+        "USER": config["DB_USER"],
+        "PASSWORD": config["DB_PASSWORD"],
+        "HOST": config["DB_HOST"],
+        "PORT": int(config["DB_PORT"]),
     }
 }
 
@@ -141,13 +141,11 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles/")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CORS_ALLOW_ALL_ORIGINS = True
-
-CSRF_TRUSTED_ORIGINS = ["https://mapatecho.staging.girolabs.cloud"]
 
 REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",)

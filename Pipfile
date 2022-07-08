@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
+django = "~=3.2.8"
 diff-match-patch = "*" 
 django-constance = "*" 
 django-crispy-forms = "*" 
@@ -17,8 +17,3 @@ tablib = "*"
 django-cors-headers = "*"
 gunicorn = "*"
 python-dotenv = "*"
-
-[dev-packages]
-
-[requires]
-python_version = "3.8"
