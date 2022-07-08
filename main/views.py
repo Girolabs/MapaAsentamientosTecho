@@ -1,4 +1,5 @@
-from django.shortcuts import render, render_to_response
+import decimal
+from django.shortcuts import render
 
 from django.http import HttpResponse
 
@@ -8,12 +9,9 @@ from main.serializers import UserSerializer, GroupSerializer, AsentamientoSerial
 from main.models import Asentamiento
 
 from rest_framework import filters
-from rest_framework.views import APIView
-from rest_framework import generics
 from django.db.models import Count, Sum
 
 import json
-from django.core import serializers
 from constance import config
 from main.admin import AsentamientoResource
 
@@ -34,36 +32,36 @@ def index(request):
     #asentamiento = serializers.serialize('json',Asentamiento.objects.all())
     asentamiento = json.dumps(list(ciudades), cls=DecimalEncoder)
     context = {'asentamiento':asentamiento, 'config': config}
-    return render_to_response('index.html',context)
+    return render(request = request, template_name = 'index.html', context = context)
 
 
 
 def mapa(request):
     context = {'config': config}
-    return render_to_response('mapa.html', context)
+    return render(request = request, template_name = 'mapa.html', context = context)
 
 
 
 def metodologia(request):
     context = {'config': config}
-    return render_to_response('metodologia.html', context)
+    return render(request = request, template_name = 'metodologia.html', context = context)
 def graficos(request):
     context = {'config': config}
-    return render_to_response('graficos.html', context)
+    return render(request = request, template_name = 'graficos.html', context = context)
 
 def graficosBarra(request):
     context = {'config': config}
-    return render_to_response('graficos-barras.html', context)
+    return render(request = request, template_name = 'graficos-barras.html', context = context)
 
 def burbuja(request):
     context = {'config': config}
-    return render_to_response('burbuja.html', context)
+    return render(request = request, template_name = 'burbuja.html', context = context)
 
 
 
 def datos(request):
     context = {'config': config}
-    return render_to_response('datos.html', context)
+    return render(request = request, template_name = 'datos.html', context = context)
 
 
 def descargaAsentamientos(request):
@@ -104,5 +102,5 @@ class AsentamientoViewSet(viewsets.ModelViewSet):
     """
     queryset = Asentamiento.objects.all()
     serializer_class = AsentamientoSerializer
-    filter_backends = (filters.DjangoFilterBackend,)
+    #filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('asentamiento',)

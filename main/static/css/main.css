@@ -3,6 +3,7 @@
     src: url(../fonts/Novecentowide-Normal.otf);
     font-weight: normal;
 }
+
 @font-face {
     font-family: Novecento;
     src: url(../fonts/Novecentowide-Bold.otf);
@@ -52,7 +53,7 @@
     font-family: Vista;
     src: url(../fonts/VistaSanLig.ttf);
     font-weight: 300;
-    
+
 }
 
 @font-face {
@@ -60,14 +61,15 @@
     src: url(../fonts/VistaSanLigIta.ttf);
     font-weight: 300;
     font-style: italic;
-    
+
 }
+
 @font-face {
     font-family: Vista;
     src: url(../fonts/VistaSanBol.ttf);
     font-weight: bold;
-    
-    
+
+
 }
 
 @font-face {
@@ -75,11 +77,20 @@
     src: url(../fonts/VistaSanBolIta.ttf);
     font-weight: bold;
     font-style: italic;
-    
+
 }
 
-.h1, .h2, .h3, .h4, h1, h2, h3, h4, h5, h6 {
-    font-family: Novecento,Helvetica,Arial,sans-serif;
+.h1,
+.h2,
+.h3,
+.h4,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Novecento, Helvetica, Arial, sans-serif;
     font-weight: bold;
 }
 
@@ -88,13 +99,16 @@
 
 
 
-div.container, p , a  {
+div.container,
+p,
+a {
     font-family: Vista;
 }
 
 
-.navbar, .navbar.navbar-default {
-	background: white;
+.navbar,
+.navbar.navbar-default {
+    background: white;
     border-bottom: solid #0092DD;
 }
 
@@ -103,7 +117,7 @@ div.container, p , a  {
 }
 
 .navbar .navbar-brand {
-    top:    -5px;
+    top: -5px;
 }
 
 ul.nav.navbar-nav.navbar-right a {
@@ -114,15 +128,16 @@ ul.nav.navbar-nav.navbar-right a {
 
 
 #mapcanvas {
-	 margin-top: 60px !important;
+    margin-top: 60px !important;
     display: block;
-    position:absolute;
-    height:auto;
-    bottom:0;
-    top:0;
-    left:0;
-    right:0;
-    margin-top:50px; /* adjust top margin to your header height */
+    position: absolute;
+    height: auto;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-top: 50px;
+    /* adjust top margin to your header height */
 }
 
 
@@ -132,8 +147,9 @@ ul.nav.navbar-nav.navbar-right a {
 }
 
 .bienvenida {
-     text-align: center; 
+    text-align: center;
 }
+
 .bienvenida .logo {
     width: 300px;
     filter: grayscale(1);
@@ -141,15 +157,19 @@ ul.nav.navbar-nav.navbar-right a {
 }
 
 
-.btn:not(.btn-raised), .btn:not(.btn-raised).btn-default, .input-group-btn .btn:not(.btn-raised), .input-group-btn .btn:not(.btn-raised).btn-default
-{
-        background: #0092DD;
-    color: white ;
+.btn:not(.btn-raised),
+.btn:not(.btn-raised).btn-default,
+.input-group-btn .btn:not(.btn-raised),
+.input-group-btn .btn:not(.btn-raised).btn-default {
+    background: #0092DD;
+    color: white;
 }
 
-.btn:not(.btn-raised):not(.btn-link):focus, .btn:not(.btn-raised):not(.btn-link):hover, .input-group-btn .btn:not(.btn-raised):not(.btn-link):focus, .input-group-btn .btn:not(.btn-raised):not(.btn-link):hover
-{
-        background: #58585A;
+.btn:not(.btn-raised):not(.btn-link):focus,
+.btn:not(.btn-raised):not(.btn-link):hover,
+.input-group-btn .btn:not(.btn-raised):not(.btn-link):focus,
+.input-group-btn .btn:not(.btn-raised):not(.btn-link):hover {
+    background: #58585A;
 }
 
 a.btn.btn-white {
@@ -160,7 +180,6 @@ a.btn.btn-white {
 a.btn.btn-white:hover {
     color: white;
 }
-
 
 .cta-principal h3 {
     text-align: center;
@@ -175,11 +194,11 @@ a.btn.btn-white:hover {
     width: 179px;
 }
 
-#mapcanvas2  .info.leaflet-control h4 {
+#mapcanvas2 .info.leaflet-control h4 {
     color: #DA9636;
 }
 
-#mapcanvas2  .info.leaflet-control {
+#mapcanvas2 .info.leaflet-control {
     color: #575756;
     background: #CCE1E4;
     padding: 10px;
@@ -189,11 +208,7 @@ a.btn.btn-white:hover {
 
 #mapcanvas2.leaflet-container {
     background: transparent;
-    
-}
 
-#mapcanvas2 .leaflet-control-attribution.leaflet-control {
-    display: none;
 }
 
 #mapcanvas2 .leaflet-popup-content {
@@ -211,46 +226,50 @@ a.btn.btn-white:hover {
     font-size: 20px;
 }
 
-.datos{
+.datos {
     margin-top: 60px;
 }
 
 
-#mapcanvas2 a.leaflet-control-zoom-in, #mapcanvas2 a.leaflet-control-zoom-out {
+#mapcanvas2 a.leaflet-control-zoom-in,
+#mapcanvas2 a.leaflet-control-zoom-out {
     background-color: transparent;
     border-color: transparent;
     color: white;
 }
 
-#mapcanvas2 a.leaflet-control-zoom-in:hover,#mapcanvas2 a.leaflet-control-zoom-out:hover {
+#mapcanvas2 a.leaflet-control-zoom-in:hover,
+#mapcanvas2 a.leaflet-control-zoom-out:hover {
     background-color: transparent;
     border-color: transparent;
     color: white;
 }
 
-#mapcanvas  .info.leaflet-control {
-        background: rgba(0, 146, 221, 0.9);
-      padding: 20px;
+#mapcanvas .info.leaflet-control {
+    background: rgba(0, 146, 221, 0.9);
+    padding: 20px;
     margin-right: 0px;
     width: 40%;
     top: -20px;
-       height: 100vh;
+    height: 100vh;
     overflow-y: scroll;
     color: white;
 }
 
-#mapcanvas  .info.leaflet-control h5{
+#mapcanvas .info.leaflet-control h5 {
     color: #575756;
     margin-top: 3px;
     padding-bottom: 6px;
     border-bottom: solid 2px #575756;
 }
-#mapcanvas  .info.leaflet-control h4{
-color: white;
-margin-bottom: 0px;
+
+#mapcanvas .info.leaflet-control h4 {
+    color: white;
+    margin-bottom: 0px;
 }
+
 .search-tooltip a.search-tip {
-  
+
     border-radius: 0px;
     padding: 10px;
     color: #0092DD;
@@ -266,24 +285,25 @@ margin-bottom: 0px;
 }
 
 
-tr.jsgrid-alt-row, tr.jsgrid-row {
+tr.jsgrid-alt-row,
+tr.jsgrid-row {
     font-size: 10px;
 }
 
 
 .jsgrid-header-sortable {
     font-size: 10px;
-        text-align: center;
+    text-align: center;
 }
 
 
 .jsgrid-grid-body {
-        overflow-y: auto;
+    overflow-y: auto;
 
 }
 
 .jsgrid-grid-header {
-      overflow-y: auto;
+    overflow-y: auto;
 }
 
 h1.center {
@@ -302,7 +322,7 @@ h1.center {
 }
 
 tfoot {
-       display: table-header-group;
+    display: table-header-group;
     background: #0092DD;
 }
 
@@ -319,7 +339,7 @@ table.DTFC_Cloned thead tr {
 
 
 .sidebar {
-     box-shadow: 0 1px 5px rgba(0,0,0,0); 
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0);
 }
 
 #sidebar .sidebar-left.collapsed~.sidebar-map .leaflet-left {
@@ -328,7 +348,7 @@ table.DTFC_Cloned thead tr {
 }
 
 #sidebar .sidebar-left~.sidebar-map {
-     margin-left: 0px; 
+    margin-left: 0px;
 }
 
 #sidebar {
@@ -341,13 +361,14 @@ table.DTFC_Cloned thead tr {
 }
 
 #sidebar .sidebar.leaflet-touch {
-    border: 2px solid rgba(0,0,0,0);
-        z-index: 1;
+    border: 2px solid rgba(0, 0, 0, 0);
+    z-index: 1;
     border-radius: 0px;
 }
 
-#sidebar .sidebar-tabs>li, .sidebar-tabs>ul>li {
-      width: 90%;
+#sidebar .sidebar-tabs>li,
+.sidebar-tabs>ul>li {
+    width: 90%;
     border: solid rgb(177, 177, 177) 2px;
     background: white;
     border-radius: 5px;
@@ -358,7 +379,7 @@ table.DTFC_Cloned thead tr {
 }
 
 #sidebar .sidebar-left .sidebar-content {
-  /*  left: 0px !important;*/
+    /*  left: 0px !important;*/
     /* right: 0; */
 }
 
@@ -367,14 +388,15 @@ table.DTFC_Cloned thead tr {
     margin-top: 50px;
 
 
-}   
+}
 
 div#sidebar.collapsed {
     height: 50px;
 }
 
 
-.navbar .navbar-toggle:focus, .navbar .navbar-toggle:hover {
+.navbar .navbar-toggle:focus,
+.navbar .navbar-toggle:hover {
     /* background-color: #0091DC; */
     color: #0091DC;
 }
@@ -388,8 +410,11 @@ div#sidebar.collapsed {
 }
 
 
-[class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after{
-    margin-left: 0px !important; 
+[class^="flaticon-"]:before,
+[class*=" flaticon-"]:before,
+[class^="flaticon-"]:after,
+[class*=" flaticon-"]:after {
+    margin-left: 0px !important;
 }
 
 .leaflet-control-search.leaflet-control {
@@ -398,17 +423,14 @@ div#sidebar.collapsed {
     border: solid rgb(186, 180, 173) 2px;
 }
 
-.leaflet-control-attribution{
-    display: none;
-}
-
-.leaflet-control-search .search-button{
-    background-position: 5px 4px !important; 
+.leaflet-control-search .search-button {
+    background-position: 5px 4px !important;
     height: 30px;
     width: 30px;
 }
+
 .info.leaflet-control .fa {
-       font-size: 26px;
+    font-size: 26px;
     padding: 10px;
 }
 
@@ -433,9 +455,9 @@ div#sidebar.collapsed {
 }
 
 
-.info.leaflet-control .col-md-6{
+.info.leaflet-control .col-md-6 {
     text-align: center;
-       
+
 }
 
 .cuadro {
@@ -450,7 +472,7 @@ div#sidebar.collapsed {
 }
 
 footer {
-background: #35383B;
+    background: #35383B;
     overflow: hidden;
     color: white;
 
@@ -462,9 +484,8 @@ td.dataTables_empty {
     padding-left: 35px !important;
 }
 
-div.dataTables_wrapper div.dataTables_filter
-{
-        text-align: left;
+div.dataTables_wrapper div.dataTables_filter {
+    text-align: left;
 }
 
 ul.nav.navbar-nav.navbar-right li:hover {
@@ -474,18 +495,18 @@ ul.nav.navbar-nav.navbar-right li:hover {
 }
 
 ul.nav.navbar-nav.navbar-right li a:hover {
-    
+
     color: white !important;
 }
 
-ul.nav.navbar-nav.navbar-right li.active{
+ul.nav.navbar-nav.navbar-right li.active {
 
-      background: #DD4395;
+    background: #DD4395;
 }
 
-ul.nav.navbar-nav.navbar-right li.active a{
+ul.nav.navbar-nav.navbar-right li.active a {
 
-      color: white !important;
+    color: white !important;
 }
 
 .container.interna {
@@ -494,14 +515,14 @@ ul.nav.navbar-nav.navbar-right li.active a{
 
 
 .panel {
-  -webkit-animation-duration: 1.5s;
-  -webkit-animation-delay: 0.1s;
- /* -webkit-animation-iteration-count: infinite;*/
-   -moz-animation-duration:1.5s;
-  -moz-animation-delay: 0.1s;
+    -webkit-animation-duration: 1.5s;
+    -webkit-animation-delay: 0.1s;
+    /* -webkit-animation-iteration-count: infinite;*/
+    -moz-animation-duration: 1.5s;
+    -moz-animation-delay: 0.1s;
 
-   animation-duration: 1.5s;
-  animation-delay: 0.1s;
+    animation-duration: 1.5s;
+    animation-delay: 0.1s;
 
 }
 
@@ -541,7 +562,7 @@ a.facebook {
 }
 
 a.twitter {
-    color: white;  
+    color: white;
 }
 
 .sidebar-left~.sidebar-map {
@@ -549,9 +570,10 @@ a.twitter {
 }
 
 
-.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
     background: #616161;
-    box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
     color: white;
     border-radius: 0px;
 }
@@ -571,32 +593,32 @@ a.twitter {
 
 
 
-@media (max-width: 1080px) { 
-#mapcanvas .info.leaflet-control {
-    width: 100%;
-}
-#mapcanvas {
-    margin-top: 53px !important;}
+@media (max-width: 1080px) {
+    #mapcanvas .info.leaflet-control {
+        width: 100%;
+    }
+
+    #mapcanvas {
+        margin-top: 53px !important;
+    }
 
 }
+
 @media (max-width: 600px) {
 
-.leaflet-control-container .leaflet-top.leaflet-right {
-    width: 80%;
-}
-
-#mapcanvas .info.leaflet-control {
-    width: 100%;
-}
-
-.sidebar-left~.sidebar-map {
-    margin-left: 0px;
-}
-
-#mapcanvas {
-    margin-top: 53px !important
-
+    .leaflet-control-container .leaflet-top.leaflet-right {
+        width: 80%;
     }
-  }
 
+    #mapcanvas .info.leaflet-control {
+        width: 100%;
+    }
 
+    .sidebar-left~.sidebar-map {
+        margin-left: 0px;
+    }
+
+    #mapcanvas {
+        margin-top: 53px !important
+    }
+}

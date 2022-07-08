@@ -1,9 +1,4 @@
-from django.conf.urls import url,include
-
-from . import views
-
-
-from django.conf.urls import url, include
+from django.urls import re_path, include
 from rest_framework import routers
 from main import views
 
@@ -14,18 +9,18 @@ router.register(r'asentamiento', views.AsentamientoViewSet)
 
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^mapa/$', views.mapa, name='mapa'),
-    url(r'^datos/$', views.datos, name='datos'),
-    url(r'^metodologia/$', views.metodologia, name='metodologia'),
-     url(r'^graficos/$', views.graficos, name='graficos'),
-      url(r'^graficos-barras/$', views.graficosBarra, name='graficosBarra'),
+    re_path(r'^$', views.index, name='index'),
+    re_path(r'^mapa/$', views.mapa, name='mapa'),
+    re_path(r'^datos/$', views.datos, name='datos'),
+    re_path(r'^metodologia/$', views.metodologia, name='metodologia'),
+     re_path(r'^graficos/$', views.graficos, name='graficos'),
+      re_path(r'^graficos-barras/$', views.graficosBarra, name='graficosBarra'),
      
-       url(r'^burbuja/$', views.burbuja, name='burbuja'),
-     url(r'^descarga-asentamientos/$', views.descargaAsentamientos, name='descargaAsentamientos'),
+       re_path(r'^burbuja/$', views.burbuja, name='burbuja'),
+     re_path(r'^descarga-asentamientos/$', views.descargaAsentamientos, name='descargaAsentamientos'),
      #url(r'^asentamiento/$', views.AsentamientoViewSet.as_view()),
 
-     url(r'^', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+     re_path(r'^', include(router.urls)),
+    re_path(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 
 ]
